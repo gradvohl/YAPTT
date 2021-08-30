@@ -4,7 +4,7 @@ This repository contains a new tutorial on the POSIX Threads library (PThreads) 
 
 I split this tutorial into sections, and each section is in a specific directory. Each section covers a particular subject related to the PThreads library. The reader can feel free to read the tutorial in the order that suits him best. However, I suggest that the beginning reader follow the order of sections below:
 
-1. Introduction
+1. [Introduction](introduction): main concepts behind the PThreads library.
 2. Test 1
 3. Test 2
 
