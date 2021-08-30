@@ -9,6 +9,6 @@ I split this tutorial into sections, and each section is in a specific directory
 3. [Synchronizing threads](syncThreads): How to synchronize threads.
 
 ## How to use the examples in YAPTT
-All the examples in YAPTT are ready to be compiled and run after compilation in a **Linux** distribution. For compiling, it is essential to have the [GNU Compiler Collection](http://gcc.gnu.org) installed in your **Linux** operating system.
+All the examples in YAPTT are ready to be compiled and run after compilation in a **Linux** distribution. For compiling, it is essential to have the [GNU Compiler Collection](http://gcc.gnu.org) installed in your **Linux** operating system..
 
 In each directory, you have a ``makefile`` with the instructions for compiling the source codes. When the user issues the the ``make`` command, it will interpret the compilation instructions in the ``makefile``, building the program. The output of the ``make`` command itself shows the compiler and the respective parameters used for compiling each source code and linking modules together.
