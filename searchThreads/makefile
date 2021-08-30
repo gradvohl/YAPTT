@@ -36,6 +36,10 @@ all: $(MAIN)
 $(MAIN): $(OBJECTS)
 	$(CC) $(LIBS) $(OBJECTS) -o $(PROGRAMDIR)/$(MAIN)
 
+# For each .c file, compile according to the following rule
+# and generate .o file.
+# $<: the name of the prerequisite of the rule (a .c file).
+# $@: the name of the target of the rule (a .o file).
 .c.o: 
 	$(CC) $(CCFLAGS) $(INCLUDES) $(LIBS) -c $<  -o $@
 
