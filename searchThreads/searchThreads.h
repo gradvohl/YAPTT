@@ -21,6 +21,7 @@ typedef struct
   short *found;
 } parameters;
 
+short exists(int elemento, int *vetor, int tamanho);
 void *searchThread(void *args);
 parameters *parametersAllocation(unsigned int begin, unsigned int end,
                                  int element, int *array, short *found);

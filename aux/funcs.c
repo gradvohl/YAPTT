@@ -13,7 +13,7 @@
  * @param array Array where the element is searched.
  * @param size Array size.
  *
- * @return FALSE (0) if the element does not exist in the array. 
+ * @return FALSE (0) if the element does not exist in the array.
  *         TRUE otherwise.
  */
 short exists(int element, int *array, int size)
