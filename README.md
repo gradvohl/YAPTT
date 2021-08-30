@@ -6,7 +6,7 @@ I split this tutorial into sections, and each section is in a specific directory
 
 1. [Introduction](introduction): Main concepts behind the PThreads library and the first PThread program.
 2. [Passing parameters to threads](passingParameters): How to pass parameters to threads and get returns.
-3. [Sincronizacao de threads](syncThreads): How to synchronize threads.
+3. [Synchronizing threads](syncThreads): How to synchronize threads.
 
 ## How to use the examples in YAPTT
 All the examples in YAPTT are ready to be compiled and run after compilation in a **Linux** distribution. For compiling, it is essential to have the [GNU Compiler Collection](http://gcc.gnu.org) installed in your **Linux** operating system.
