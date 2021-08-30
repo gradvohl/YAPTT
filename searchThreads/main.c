@@ -7,6 +7,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
 #include "../aux/funcs.h"
 #include "searchThreads.h"
 #define SIZE 40
@@ -29,7 +30,6 @@ void searchElement(int element, int *array, unsigned int size,
   register unsigned int begin, end;
   parameters *p;
   short found = FALSE;
-  int rc;
   void *threadResult;
   pthread_t *threadIDs;
 
@@ -88,7 +88,6 @@ void searchElement(int element, int *array, unsigned int size,
 
 int main(int argc, char *argv[])
 {
-  register int i;
   int element = 0;
   int *array = NULL;
 
