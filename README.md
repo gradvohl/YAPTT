@@ -4,9 +4,9 @@ This repository contains a new tutorial on the POSIX Threads library (PThreads) 
 
 I split this tutorial into sections, and each section is in a specific directory. Each section covers a particular subject related to the PThreads library. The reader can feel free to read the tutorial in the order that suits him best. However, I suggest that the beginning reader follow the order of sections below:
 
-1. [Introduction](introduction): main concepts behind the PThreads library.
-2. Test 1
-3. Test 2
+1. [Introduction](introduction): Main concepts behind the PThreads library and the first PThread program.
+2. [Passing parameters to threads](passingParameters): How to pass parameters to threads and get returns.
+3. [Sincronizacao de threads](syncThreads): How to synchronize threads.
 
 ## How to use the examples in YAPTT
 All the examples in YAPTT are ready to be compiled and run after compilation in a **Linux** distribution. For compiling, it is essential to have the [GNU Compiler Collection](http://gcc.gnu.org) installed in your **Linux** operating system.
