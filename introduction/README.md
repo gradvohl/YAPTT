@@ -1,9 +1,13 @@
 # Introduction
-In this section, we will give some basic information about how threads work using PThreads. Also, we will present the first examples, which explains the fundamental structures for writing threads in PThreads.
+In this section, we will give some basic information about how threads work using PThreads. Also, we will present the first examples, which explains the fundamental structures for writing codes for threads in PThreads.
 
-If the reader feels confortable with the concepts behind threads, he/she can skip the first section.
+I divided this section is the following topics:
+- [Brief Overview of Threads](#Brief-Overview-of-Threads)
+- [Schematic of Multithread Processing using PThreads](#Schematic-of-Multithread-Processing-using-PThreads)
+- [Threads signatures](#Threads-signatures)
 
-[Go to Real Cool Heading section](#Threads-signatures)
+If the reader feels confortable with the concepts behind threads, she/he can skip the text until the [Threads signatures](#Threads-signatures) section.
+
 
 ## Brief Overview of Threads
 Usually, when we write the code for a program, we consider that the processor will execute the instructions one at a time. However, the processor can execute some sets of instructions (threads) in parallel, especially those with no dependencies. Dependence occurs when the result of one instruction influences the execution of another.
@@ -27,5 +31,12 @@ The program can create other threads if necessary. At the end of each thread, us
 
 In turn, the main thread can wait for the secondary threads to finish with the ``pthread_join`` function, which blocks the main thread until the indicated thread finishes.
 
-## Threads signatures
+## Thread signature
+Remember that threads are embedded in functions. Also, in PThread API, to be a thread, a function should use the signature depicted in next figure.
+
+<img src="https://github.com/gradvohl/YAPTT/blob/main/introduction/ThreadSignature.png?raw=true" class="center" width=256 />
+
+Notice that both the type of return and the type of the argument for the funcion are ``void *``. That information means that the function may receive an address for anything as a parameter. Using the same reasoning, the function will return an address for anything.
+
+It is important to mention that the programmer can specify the function name and as the name of the parameter the function will receive. The programmer cannot change the type of return, neither the type of the parameter the function receives.
 
