@@ -16,7 +16,7 @@ This tutorial will show how to use a library for multiple threads programming in
 
 I highlight that there are other APIs for multithreaded programming, for example, OpenMP. But other APIs use a different paradigm than PThreads. For example, a vital point in PThreads is that **each thread is embedded in a function**. This paradigm -- where a function encapsulates a thread -- allows for different granularity. That is, for the PThreads API, each thread has a reasonable set of instructions to execute.
 
-### Schematic of Multithread Processing using PThreads
+## Schematic of Multithread Processing using PThreads
 To illustrate how multiple threads work, let's consider the following figure. First, note that every process has a main thread (represented by the wavy line in the center of the process). Then, at some point in processing, this main thread can create a second thread by calling a specific function (in this case, ``pthread_create``).
 
 <img src="https://github.com/gradvohl/YAPTT/blob/main/introduction/ThreadsBasics.png?raw=true" class="center" width=256 />
