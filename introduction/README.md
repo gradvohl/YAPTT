@@ -7,8 +7,16 @@ In practice, other factors can compromise the performance of a multi-threaded pr
 
 This tutorial will show how to use a library for multiple threads programming in the Portable Operating System Interface (POSIX) standard. This library or Application Programming Interface (API) is called POSIX Threads (PThreads). Because it adopts a standard, it is possible to use it on any operating system that embraces POSIX, notably Linux.
 
-I highlight that there are other APIs for multithreaded programming, for example, OpenMP. But other APIs use a different paradigm than PThreads. For example, an vital point in PThreads is that each thread is embedded in a function. This paradigm -- where a function encapsulates a thread -- allows for different granularity. That is, for the PThreads API, each thread has a reasonable set of instructions to execute.
+I highlight that there are other APIs for multithreaded programming, for example, OpenMP. But other APIs use a different paradigm than PThreads. For example, an vital point in PThreads is that **each thread is embedded in a function**. This paradigm -- where a function encapsulates a thread -- allows for different granularity. That is, for the PThreads API, each thread has a reasonable set of instructions to execute.
 
+### Schematic of Multithread Processing using PThreads
+To illustrate how multiple threads work, let's consider the following figure. First, note that every process has a main thread (represented by the wavy line in the center of the process). Then, at some point in processing, this main thread can create a second thread by calling a specific function (in this case, ``pthread_create``).
 
+<img src="https://github.com/gradvohl/YAPTT/blob/main/YAPTT.png?raw=true" align="center" width=283 />
 
+If everything went right in the function call, there would be two threads running simultaneously. Suppose the process is running on a multicore processor. In that case, each thread will likely be on a different processor core.
+
+The program can create other threads if necessary. At the end of each thread, using the default attributes, the threads can return to the main thread, returning a result of the processing or simply signaling that they have finished. A secondary thread signals with the function ``pthread_exit`` at the end of its code.
+
+In turn, the main thread can wait for the secondary threads to finish with the ``pthread_join`` function, which blocks the main thread until the indicated thread finishes.
 
