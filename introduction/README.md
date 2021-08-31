@@ -4,9 +4,9 @@ In this section, we will give some basic information about how threads work usin
 I divided this section is the following topics:
 - [Brief Overview of Threads](#Brief-Overview-of-Threads)
 - [Schematic of Multithread Processing using PThreads](#Schematic-of-Multithread-Processing-using-PThreads)
-- [Thread signature](#Thread-signature)
+- [Thread Signature](#Thread-Signature)
+- [Time to Code](#Time-to-Code)
 
-If the reader feels comfortable with the concepts behind threads, she/he can skip the text until the [Threads signatures](#Threads-signatures) section.
 
 
 ## Brief Overview of Threads
@@ -32,7 +32,7 @@ The program can create as many threads as necessary. At the end of each thread, 
 
 In turn, the main thread can wait for the secondary threads to finish with the ``pthread_join`` function, which blocks the main thread until the indicated thread finishes.
 
-## Thread signature
+## Thread Signature
 Remember that functions embed threads. Also, in PThread API, to be a thread, a function should use the signature depicted in the following figure.
 
 <img src="https://github.com/gradvohl/YAPTT/blob/main/introduction/ThreadSignature.png?raw=true" class="center" width=335 />
@@ -40,3 +40,8 @@ Remember that functions embed threads. Also, in PThread API, to be a thread, a f
 Notice that both the type of return and the argument for the function are ``void *``. That information means that the function may receive an address for anything as a parameter. Also, the function will return an address for anything.
 
 It is important to mention that the programmer can specify the function name and the parameter's name the function will receive. However, the programmer cannot change the type of return nor the parameter the function gets.
+
+## Time to Code
+Now, let us see some code in action. Our first example is in the ``firstExample`` directory and I invite the reader to look at the code, before compiling it.
+
+
