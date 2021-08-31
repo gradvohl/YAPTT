@@ -39,10 +39,9 @@ int main(int argc, char *argv[])
     }
   }
 
-  printf("Joining thread #%d\n", t);
-
   for (t = 0; t < NUM_THREADS; t++)
   {
+    printf("Joining thread #%d\n", t);
     rc = pthread_join(threads[t], NULL);
 
     if (rc)
