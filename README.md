@@ -1,4 +1,4 @@
-# YAPTT -- Yet Another PThread Tutorial
+# YAPTT -- Yet Another PThread Tutorial <img src="https://github.com/gradvohl/YAPTT/blob/main/YAPTT.png?raw=true" align="right" width=125 />
 ## Overview
 This repository contains a new tutorial on the POSIX Threads library (PThreads) using the C language (pure, not C++). The PThreads library allows you to create different streams of instructions (threads) that, if well-orchestrated, can get better performance from the processing cores in a processor.
 
