@@ -12,7 +12,7 @@ I highlight that there are other APIs for multithreaded programming, for example
 ### Schematic of Multithread Processing using PThreads
 To illustrate how multiple threads work, let's consider the following figure. First, note that every process has a main thread (represented by the wavy line in the center of the process). Then, at some point in processing, this main thread can create a second thread by calling a specific function (in this case, ``pthread_create``).
 
-<img src="https://github.com/gradvohl/YAPTT/blob/main/introduction/ThreadsBasics.png?raw=true" class="center" width=513 />
+<img src="https://github.com/gradvohl/YAPTT/blob/main/introduction/ThreadsBasics.png?raw=true" class="center" width=256 />
 
 If everything went right in the function call, there would be two threads running simultaneously. Suppose the process is running on a multicore processor. In that case, each thread will likely be on a different processor core.
 
