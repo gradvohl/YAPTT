@@ -19,7 +19,9 @@ I divided the code into the following files:
 ## Solution description
 To solve the problem using multithreads, we will create threads that access their respective array partition. Besides, the threads shall receive the element they will search for, two integers indicating the begin and the end of the partition, and the address of a shared variable to tell when any thread finds the element.
 
-Therefore, we define the following structure to handle the parameters. The definition of this structure is in the ``searchThreads.h`` file (line 15).
+### Structure to handle the thread input parameters
+
+We define the following structure to handle the parameters we will pass to the thread. The definition of this structure is in the ``searchThreads.h`` file (line 15).
 ```c
 typedef struct
 {
@@ -31,6 +33,7 @@ typedef struct
 } parameters;
 ```
 
+### Allocate the structure to handle the parameters and instantiate the thread
 Now, let us turn our attention to the file ``main.c``, specifically to the function ``searchElement``, starting in line 26. After declaring the variables, we dynamically create an array of thread ids and enter in a loop to instantiate the threads.
 
 In each iteration of that loop, we define the values for each field of the structure that will handle the parameters; we allocate that structure dynamically; and instantiate the thread. Following is the code that performs the steps mentioned before.
