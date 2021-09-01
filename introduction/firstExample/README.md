@@ -7,14 +7,26 @@ If you want to go straight to the instructions for compiling and executing, go t
 As the reader can see in the file ``firstExample.c``, in line 4, we included the ``pthread.h`` header. This header contains all the PThreads functions.
 
 ## The thread function
-Now, turn your attention to lines 14 to 22. There, we implemented the ``printHello`` thread. Inside that function, the reader can see that in line 18, we used the function ``pthread_self`` to get the thread internal identification (id).  We rarely use this information inside a thread, but it is important to know that each thread has an id, and we can use the ids to synchronize the threads within the main function.
+Now, turn your attention to lines 14 to 22 (depicted as follows). There, we implemented the ``printHello`` thread. Inside that function, the reader can see that in line 18, we used the function ``pthread_self`` to get the thread internal identification (id).  We rarely use this information inside a thread, but it is important to know that each thread has an id, and we can use the ids to synchronize the threads within the main function.
+
+```c
+14 void *printHello(void *args)
+15 {
+  pthread_t id;
+
+  id = pthread_self();
+  fprintf(stdout, "Hello world! My thread id: #%ld\n", id);
+
+  pthread_exit(NULL);
+}
+```
 
 At the end of the thread, in line 21, notice that we call ``pthread_exit(NULL);`` That call will tell the main function that the thread finished and returns no address.
 
 ## The thread creation in the main function
 As we stated before, each process has a main thread. Therefore, let us consider the main function. In line 26, we created an array with ``NUM_THREADS`` positions. This array will handle the threads' ids, which we will use to join the threads after processing.
 
-From line 30 to line 40, that loop will create five threads, one at each iteration. In line 33, we will use the function ``pthread_create`` to instantiate the threads. The function ``pthread_create`` receives four arguments:
+From line 30 to line 40 (depicted as follows), that loop will create five threads, one at each iteration. In line 33, we will use the function ``pthread_create`` to instantiate the threads. The function ``pthread_create`` receives four arguments:
 - The address of a variable to handle id of the created thread.
 - The address of a structure with attributes for thread creation (we will use ``NULL`` to use the default attributes).
 - The name of the function that embeds the thread.
