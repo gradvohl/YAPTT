@@ -23,7 +23,7 @@ I highlight that there are other APIs for multithreaded programming, for example
 ## Schematic of Multithread Processing using PThreads
 To illustrate how multiple threads work, let's consider the following figure. First, note that every process has a main thread (represented by the wavy line in the center of the process). Then, at some point in processing, this main thread can create a second thread by calling a specific function (in this case, the function ``pthread_create``).
 
-<img src="https://github.com/gradvohl/YAPTT/blob/main/introduction/ThreadsBasics.png?raw=true" class="center" width=256 />
+<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadsBasics.png?raw=true" class="center" width=256 />
 
 If everything went right in the function call, there would be two threads running simultaneously. However, if the process runs on a multicore processor, each thread will likely be on a different processor core.
 
@@ -35,7 +35,7 @@ In turn, the main thread can wait for the secondary threads to finish with the `
 ## Thread Signature
 Remember that functions embed threads. Also, in PThread API, to be a thread, a function should use the signature depicted in the following figure.
 
-<img src="https://github.com/gradvohl/YAPTT/blob/main/introduction/ThreadSignature.png?raw=true" class="center" width=335 />
+<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadSignature.png?raw=true" class="center" width=335 />
 
 Notice that both the type of return and the argument for the function are ``void *``. That information means that the function may receive an address for anything as a parameter. Also, the function will return an address for anything.
 
