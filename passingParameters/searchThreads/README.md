@@ -39,23 +39,23 @@ In each iteration of that loop, we define the values for each field of the struc
 parameters *p;
 ...
 for (i = 0; i < nthreads; i++)
+{
+  /* Define the initial position of the partition. */
+  begin = i * (size / nthreads);
+
+  /* Define the final position of the partition. */
+  end = (i + 1) * (size / nthreads);
+
+  /* Allocate the parameters for this specific thread. */
+  p = parametersAllocation(begin, end, element, array, &found);
+
+  /* Create the specific thread. */
+  if (pthread_create(&threadIDs[i], NULL, searchThread, p))
   {
-    /* Define the initial position of the partition. */
-    begin = i * (size / nthreads);
-
-    /* Define the final position of the partition. */
-    end = (i + 1) * (size / nthreads);
-
-    /* Allocate the parameters for this specific thread. */
-    p = parametersAllocation(begin, end, element, array, &found);
-
-    /* Create the specific thread. */
-    if (pthread_create(&threadIDs[i], NULL, searchThread, p))
-    {
-      fprintf(stderr, "Problems in thread %d creation\n", i);
-      exit(EXIT_FAILURE);
-    }
+    fprintf(stderr, "Problems in thread %d creation\n", i);
+    exit(EXIT_FAILURE);
   }
+}
 ```
 
 The file ``funcs.c`` implements the ``parametersAllocation`` function.
