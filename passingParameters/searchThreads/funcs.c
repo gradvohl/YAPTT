@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
-#include "../aux/funcs.h"
+#include "funcs.h"
 #define FALSE 0
 #define TRUE  1
 

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "../aux/funcs.h"
+#include "funcs.h"
 #include "searchThreads.h"
 #define SIZE 40
 #define NTHREADS 4

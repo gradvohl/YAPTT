@@ -10,19 +10,14 @@ CC=gcc
 # Aditional compiler flags.
 CCFLAGS=-Wall 
 #
-# Include directory
-AUXFUNCSDIR=../aux
-INCLUDES=-I$(AUXFUNCSDIR)
-#
 # Additional libraries
-PROJECTLIB=-L$(AUXFUNCSDIR)
 LIBS=-pthread $(PROJECTLIB)
 # 
 # Source files
-SOURCES=main.c searchThreads.c $(AUXFUNCSDIR)/funcs.c
+SOURCES=main.c searchThreads.c funcs.c
 #
 # Header files
-HEADERS=searchThreads.h $(AUXFUNCSDIR)/funcs.h
+HEADERS=searchThreads.h funcs.h
 #
 # Object files
 OBJECTS=$(SOURCES:.c=.o)
