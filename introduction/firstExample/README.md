@@ -10,8 +10,8 @@ As the reader can see in the file ``firstExample.c``, in line 4, we included the
 Now, turn your attention to lines 14 to 22 (depicted as follows). There, we implemented the ``printHello`` thread. Inside that function, the reader can see that in line 18, we used the function ``pthread_self`` to get the thread internal identification (id).  We rarely use this information inside a thread, but it is important to know that each thread has an id, and we can use the ids to synchronize the threads within the main function.
 
 ```c
-14 void *printHello(void *args)
-15 {
+void *printHello(void *args)
+{
   pthread_t id;
 
   id = pthread_self();
@@ -32,14 +32,42 @@ From line 30 to line 40 (depicted as follows), that loop will create five thread
 - The name of the function that embeds the thread.
 - The address of the argument that we will pass for the thread (in this case, we will use ``NULL`` because we will not pass any parameters).
 
+```c
+for (t = 0; t < NUM_THREADS; t++)
+{
+  fprintf(stdout, "Starting thread %d\n", t);
+  rc = pthread_create(&threads[t], NULL, printHello, NULL);
+
+  if (rc)
+  {
+    fprintf(stderr, "ERROR: pthread_create() returns %d\n", rc);
+    exit(EXIT_FAILURE);
+  }
+}
+```
+
 On success, ``pthread_create`` returns 0 to the ``rc`` variable. Then, in line 35, we test if variable ``rc`` has a value different from zero. If that is the case, we print a message in standard error output and leave the program.
 
 If everything works well, after line 40, we will have five threads running in parallel.
 
 ## The thread joining in the main function
-Starting in line 42 until line 52, the main thread will wait for every other thread to join. Specifically in line 45, we used the function ``pthread_join`` to block the main thread until another specific thread finishes. The ``pthread_join`` receives two parameters:
+Starting in line 42 until line 52 (presented as follows), the main thread will wait for every other thread to join. Specifically in line 45, we used the function ``pthread_join`` to block the main thread until another specific thread finishes. The ``pthread_join`` receives two parameters:
 - The id of the thread it will wait for.
 - The address of a pointe to variable that will handle the result (in this case, we will use ``NULL`` because we do not expect that the thread will return data).
+
+```c
+for (t = 0; t < NUM_THREADS; t++)
+{
+  printf("Joining thread #%d\n", t);
+  rc = pthread_join(threads[t], NULL);
+
+  if (rc)
+  {
+    fprintf(stderr, "ERROR: pthread_join() returns %d\n", rc);
+    exit(EXIT_FAILURE);
+  }
+}
+```
 
 On success, ``pthread_join`` returns 0 to the ``rc`` variable. Then, in line 47, we test if variable ``rc`` has a value different from zero. If that is the case, we print a message in standard error output and leave the program.
 
