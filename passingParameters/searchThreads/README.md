@@ -39,8 +39,8 @@ Now, let us turn our attention to the file ``main.c``, specifically to the funct
 In each iteration of that loop, we define the values for each field of the structure that will handle the parameters; we allocate that structure dynamically; and instantiate the thread. Following is the code that performs the steps mentioned before.
 
 ```c
-register unsigned int begin, end;
 parameters *p;
+register unsigned int begin, end;
 short found = FALSE;
 ...
 for (i = 0; i < nthreads; i++)

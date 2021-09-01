@@ -27,8 +27,8 @@ void searchElement(int element, int *array, unsigned int size,
                    unsigned int nthreads)
 {
   unsigned int i;
-  register unsigned int begin, end;
   parameters *p;
+  register unsigned int begin, end;
   short found = FALSE;
   void *threadResult;
   pthread_t *threadIDs;
