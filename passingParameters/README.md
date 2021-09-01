@@ -6,7 +6,5 @@ As mentioned in the section [Thread Signature](../introduction/README.md#Thread-
 
 The following figures may better explain the idea. Also, let us explain the steps, one at a time.
 1. The first step is to define a structure to handle all the parameters. Personally, I like to use the ``typedef`` keyword for defining the structure and I do it outside the scopes of functions (usually in my own header file).
-2. Next step is to dynamically create the structure in the memory (using ``malloc`` or any similar command) and fill the fields in the structure. the following figure shows how these data are in memory after steps 1 and 2. Notice that the variable ``pointer`` in the figure has the address of the structure in the memory.
-<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadArgPassing1.png?raw=true" class="center" width=156 />
-3. The last step is to pass the variable ``pointer`` to the thread in the last argument of the ``pthread_create`` function, as shown in the following figure.
-<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadArgPassing2.png?raw=true" class="center" width=156 />
+2. Next step is to dynamically create the structure in the memory (using ``malloc`` or any similar command) and fill the fields in the structure. the following figure shows how these data are in memory after steps 1 and 2. Notice that the variable ``pointer`` in the figure has the address of the structure in the memory. <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadArgPassing1.png?raw=true" class="center" width=156 />
+3. The last step is to pass the variable ``pointer`` to the thread in the last argument of the ``pthread_create`` function, as shown in the following figure. <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadArgPassing2.png?raw=true" class="center" width=156 />
