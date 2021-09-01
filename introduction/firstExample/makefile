@@ -10,19 +10,11 @@ CC=gcc
 # Aditional compiler flags.
 CCFLAGS=-Wall 
 #
-# Include directory
-AUXFUNCSDIR=../aux
-INCLUDES=-I$(AUXFUNCSDIR)
-#
 # Additional libraries
-PROJECTLIB=-L$(AUXFUNCSDIR)
-LIBS=-pthread $(PROJECTLIB)
+LIBS=-pthread 
 # 
 # Source files
 SOURCES=firstExample.c
-#
-# Header files
-HEADERS=searchThreads.h $(AUXFUNCSDIR)/funcs.h
 #
 # Object files
 OBJECTS=$(SOURCES:.c=.o)
@@ -46,4 +38,3 @@ $(MAIN): $(OBJECTS)
 # Cleaning
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE) $(PROGRAMDIR)/$(MAIN)
-
