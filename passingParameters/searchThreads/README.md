@@ -19,7 +19,7 @@ I divided the code into the following files:
 ## Solution description
 To solve the problem using multithreads, we will create threads that access their respective array partition. Besides, the threads shall receive the element they will search for, two integers indicating the begin and the end of the partition, and the address of a shared variable to tell when the element is found by any thread.
 
-Therefore, we define the following structure to handle the parameters.
+Therefore, we define the following structure to handle the parameters. The definition of this structure is in the ``searchThreads.h`` file (line 15).
 ```c
 typedef struct
 {
@@ -31,4 +31,29 @@ typedef struct
 } parameters;
 ```
 
-The definition of this structure is in the ``funcs.h`` file.
+Now, let us turn our attention to the file ``main.c``, specifically to the function ``searchElement``, starting in line 26. After the declaration of the variables, we dynamically create an array of thread ids and enter in a loop to instantiate the threads.
+
+In each iteration of that loop, we define the values for each field of the structure that will handle the parameters; we allocate dynamically that structure; and instantiate the thread. Following is the code that performs the steps mentioned before.
+
+```c
+for (i = 0; i < nthreads; i++)
+  {
+    /* Define the initial position of the partition. */
+    begin = i * (size / nthreads);
+
+    /* Define the final position of the partition. */
+    end = (i + 1) * (size / nthreads);
+
+    /* Allocate the parameters for this specific thread. */
+    p = parametersAllocation(begin, end, element, array, &found);
+
+    /* Create the specific thread. */
+    if (pthread_create(&threadIDs[i], NULL, searchThread, p))
+    {
+      fprintf(stderr, "Problems in thread %d creation\n", i);
+      exit(EXIT_FAILURE);
+    }
+  }
+```
+
+The file ``funcs.c`` implements the ``parametersAllocation`` function.
