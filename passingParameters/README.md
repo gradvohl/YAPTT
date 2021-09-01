@@ -15,7 +15,7 @@ The following figures may better explain the idea. Also, let us explain the step
 # Receiving the return of a thread
 We can use a similar reasoning for returning data from a thread in PThreads API. We can define a structure to encapsulate all the data we want to return, allocate that structure dynamically, and return the address in the memory of that structure.
 
-I want to highlight that all local variables, i.e. the variables declared inside a function, will vanish as soon as the function finishes. Therefore, the programmer cannot return the address of local variables.
+I want to highlight that all local variables, i.e. the variables declared inside a function, will vanish as soon as the function finishes (returns). Therefore, the programmer cannot return the address of local variables.
 
 # Time to code
 Let us see how parameter passing works in PThreads API with an example.
