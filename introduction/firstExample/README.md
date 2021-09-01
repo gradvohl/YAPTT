@@ -87,4 +87,4 @@ To run the program, you can issue the ``./firstExample`` command.
 I also provided a ``makefile`` with automatic instructions for compiling. In that case, you can simply issue the ``make`` command to compile the source code.
 
 # What's next?
-Now, you can see how to [pass parameters to threads and get returns](../../passingParameters). Or, if you prefer, you can get back to the [main page](../../).
+Now, you can see how to [pass parameters to threads and get returns](../../passingParameters). Or, if you prefer, you can get back to the [main page](../../YAPTT).
