@@ -1,15 +1,15 @@
 # Time to code
-This section will illustrate how to pass parameters to the threads and how to get the return of a thread using the PThread API. First, we will describe a problem to contextualize and motivate the parameters passing. After that, we will delve into the code.
+This section will illustrate how to pass parameters to the threads and how to get the return of a thread using the PThread API. First, we will describe a problem to motivate and contextualize the parameters passing. After that, we will delve into the code.
 
-## Problem description
-We want to search for an element in an array with 40 integers in random order. Therefore, we will divide the array into four partitions for that task and let each thread search sequentially in its partition. 
+## Problem description and the strategy to solve it
+We want to search for an element in an array with 40 integers in random order. Therefore, we will divide the array into four partitions and let each thread search sequentially in a partition assigned to it. 
 
-If a thread finds the element, it will tell the others to stop searching and return the element's position. If a thread does not find the element, it will return ``-1``. Finally, the main thread will collect the results of all threads and show the element's position or the message "Element not found".
+If a thread finds the element, it will tell the others to stop searching and return the element's position. If a thread does not find the element in the partition, it will return ``-1``. Finally, the main thread will collect the results of all threads and show the element's position or the message "Element not found".
 
 ## Some information about the code
-Although the example code is not that long, I made sure to separate it into different files. The goal is to facilitate the abstraction of concepts and, at the same time, to keep the code leaner. 
+Although the example code is not that long, I divided it into different files. The goal is to facilitate the abstraction of concepts and, at the same time, to keep the code leaner. 
 
-However, the reader need not worry because the ``makefile`` has all the instructions for compiling the code. All the user has to do is issue the ``make`` command.
+However, the reader need not worry because the ``makefile`` has all the instructions for compiling the code. All the user has to do is issue the ``make`` command. Besides, the ``make`` command will show the command lines for compiling each file separately and building the program in the end.
 
 I divided the code into the following files:
 - ``main.c`` with the main code, and the function ``searchElement`` responsible for instantiating the threads. 
@@ -17,10 +17,9 @@ I divided the code into the following files:
 - ``searchThreads.c`` and ``searchThreads.h`` with the code and respective header for the threads.
 
 ## Solution description
-To solve the problem using multithreads, we will create threads that access their respective array partition. Besides, the threads shall receive the element they will search for, two integers indicating the begin and the end of the partition, and the address of a shared variable to tell when any thread finds the element.
+To solve the problem using multithreads, we will create threads that access their respective array partition. Besides, the threads shall receive the address of the array, two integers indicating the begin and the end of the partition, the element they will search for, and the address of a shared variable to tell when any thread finds the element.
 
 ### Structure to handle the thread input parameters
-
 We define the following structure to handle the parameters we will pass to the thread. The definition of this structure is in the ``searchThreads.h`` file (line 15).
 ```c
 typedef struct
@@ -33,10 +32,10 @@ typedef struct
 } parameters;
 ```
 
-### Allocate the structure to handle the parameters and instantiate the thread
+### Allocate the structure to handle the parameters and instantiate each thread
 Now, let us turn our attention to the file ``main.c``, specifically to the function ``searchElement``, starting in line 26. After declaring the variables, we dynamically create an array of thread ids and enter in a loop to instantiate the threads.
 
-In each iteration of that loop, we define the values for each field of the structure that will handle the parameters; we allocate that structure dynamically; and instantiate the thread. Following is the code that performs the steps mentioned before.
+In each iteration of that loop, we define the values for each field of the structure that will handle the parameters; allocate that structure dynamically; and instantiate the thread. Following is the code that performs the steps mentioned before.
 
 ```c
 parameters *p;
@@ -63,4 +62,37 @@ for (i = 0; i < nthreads; i++)
 }
 ```
 
-The file ``funcs.c`` implements the ``parametersAllocation`` function.
+The file ``funcs.c`` implements the ``parametersAllocation`` function, which dynamically allocates the structure to handle the parameters.
+
+### Joining the threads
+Just after instantiating the threads, they suppose to run and produce results (we will delve into the threads latter). Now, we need to block the main thread until the secondary threads finish. We call this "blocking until a thread finishes" as join.
+
+Notice that we need another loop to joining the main thread to each secondary thread. The code is following.
+
+```c
+for (i = 0; i < nthreads; i++)
+{
+  /* Wait for a specific thread to end. */
+  pthread_join(threadIDs[i], &threadResult);
+
+  /* Check if the element was found. */
+  if (*((int *) threadResult) != -1)
+  {
+    fprintf(stdout, "Element found in position %d by thread %d.\n",
+            *((int *) threadResult), i);
+  }
+
+  /* We don't need the variable 'threadResult' anymore.
+   * So, let's free up the memory. 
+   */
+  free(threadResult);
+}
+```
+
+In the previous code, we should highlight some details. Let us observe the ``pthread_join`` function. The first parameter is the specific thread id that the main thread will join. Even if the threads finish in a different order than they were instantiated, there is no problem with different joins. But, it is the second parameter that worths mention.
+
+The second parameter ``&threadResult`` is the address of a pointer, which will handle the address returned by the thread. If you look at line 34, you will see that I declared ``threadResult`` as ``void *``. Yet, I still passed the address of this variable to the ``pthread_join`` function. This is necessary because the ``pthread_join`` function will change the value handled by the ``threadResult`` variable.
+
+It is also interesting to watch how to check the value of the ``threadResult`` variable (in the if command in the previous code). Since ``threadResult`` is ``void *``, first we need to cast the variable for ``(int *)`` and, after that, check the content of the address stored in ``threadResult`` variable. The following figure illustrates the procedure.
+
+<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadCastingPointer.png?raw=true" align="right" width=376 />
