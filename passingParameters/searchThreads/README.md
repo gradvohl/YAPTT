@@ -118,6 +118,38 @@ I usually declare local variables and copy the contents of structure fields into
 We must highlight one specific detail for this problem. Notice that the variable ``found`` is a pointer and stores an address. Intentionally, this address is the same for all threads because, once a thread changes the contents of this addess, this will break the search loop in all other threads (as stated in the loop in line 62 in file ``searchThread.c``).
 
 #### Returning data from a thread
-Remember that this thread should return the position of the found element or ``-1``. So, to return any data we should allocate memory to handle the data, copy the data for the allocated memory and return the memory address. We performed these steps with the variable ``position`` within the ``searchThread`` function.
+Remember that this thread should return the position of the found element or ``-1``. So, to return any data we should allocate memory to handle the data, copy the data for the allocated memory and return the memory address. We performed these steps with the variable ``position`` within the ``searchThread`` function. Following there are the commands we used.
 
+```c
+/** 
+ * Let's alocate the position variable in memory. 
+ */
+ if ((position = (int *) malloc(sizeof(int))) == NULL)
+ {
+   fprintf(stderr, "Problems in memory allocation inside thread: %ld\n",
+           pthread_self());
+   exit(EXIT_FAILURE);
+ }
 
+ *position = -1;
+
+/** 
+ * Searching in the partition. 
+ * If it is found, let's break the loop and warn the other threads
+ * that this thread found the position of the element.
+ */
+ for (i = begin; i <= end && !(*found); i++)
+   if (array[i] == element)
+   {
+     *position = i;
+     *found = TRUE;
+   }
+
+/**
+ * Return the position.  
+ * If this thread didn't find the element, return *position == -1.
+ */
+ return ((void *) position);
+}
+```
+Notice that, when return the ``position`` variable, we must cast it to ``(void *)`` to avoid compiler warnings.
