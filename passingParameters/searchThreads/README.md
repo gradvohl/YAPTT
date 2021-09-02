@@ -1,5 +1,5 @@
 # Time to code
-This section will illustrate how to pass parameters to the threads and how to get the return of a thread using the PThread API. First, we will describe a problem to motivate and contextualize the parameters passing. After that, we will delve into the code.
+This section will illustrate how to pass parameters to the threads and get the return of a thread using the PThread API. First, we will describe a problem to motivate and contextualize the parameters passing. After that, we will delve into the code.
 
 ## Problem description and the strategy to solve it
 We want to search for an element in an array with 40 integers in random order. Therefore, we will divide the array into four partitions and let each thread search sequentially in a partition assigned to it. 
@@ -9,7 +9,7 @@ If a thread finds the element, it will tell the others to stop searching and ret
 ## Some information about the code
 Although the example code is not that long, I divided it into different files. The goal is to facilitate the abstraction of concepts and, at the same time, to keep the code leaner. 
 
-However, the reader need not worry because the ``makefile`` has all the instructions for compiling the code. All the user has to do is issue the ``make`` command. Besides, the ``make`` command will show the command lines for compiling each file separately and building the program in the end.
+However, the reader need not worry because the ``makefile`` has all the instructions for compiling the code. So, all the user has to do is issue the ``make`` command. Besides, the ``make`` command will show the command lines for compiling each file separately and building the program in the end.
 
 I divided the code into the following files:
 - ``main.c`` with the main code, and the function ``searchElement`` responsible for instantiating the threads. 
@@ -65,9 +65,9 @@ for (i = 0; i < nthreads; i++)
 The file ``funcs.c`` implements the ``parametersAllocation`` function, which dynamically allocates the structure to handle the parameters.
 
 ### Joining the threads
-Just after instantiating the threads, they suppose to run and produce results (we will delve into the threads latter). Now, we need to block the main thread until the secondary threads finish. We call this "blocking until a thread finishes" as join.
+After instantiating the threads, they run and produce results. Now, we need to block the main thread until the secondary threads finish. We call this "blocking until a thread finishes" as join.
 
-Notice that we need another loop to joining the main thread to each secondary thread. The code is following.
+Notice that we need another loop to join the main thread to each secondary thread. The code is following.
 
 ```c
 for (i = 0; i < nthreads; i++)
@@ -89,15 +89,15 @@ for (i = 0; i < nthreads; i++)
 }
 ```
 
-In the previous code, we should highlight some details. Let us observe the ``pthread_join`` function. The first parameter is the specific thread id that the main thread will join. Even if the threads finish in a different order than they were instantiated, there is no problem with different joins. But, it is the second parameter that worths mention.
+In the previous code, we should highlight some details. Initially, let us observe the ``pthread_join`` function. The first parameter is the specific thread id that the main thread will join. Even if the threads finish in a different order than they were instantiated, there is no problem with other joins. But, it is the second parameter that worths mention.
 
-The second parameter ``&threadResult`` is the address of a pointer, which will handle the address returned by the thread. If you look at line 34, you will see that I declared ``threadResult`` as ``void *``. Yet, I still passed the address of this variable to the ``pthread_join`` function. This is necessary because the ``pthread_join`` function will change the value handled by the ``threadResult`` variable.
+The second parameter ``&threadResult`` is the address of a pointer, which will handle the address returned by the thread. If you look at line 34, you will see that I declared ``threadResult`` as ``void *``. Yet, I still passed the address of this variable to the ``pthread_join`` function. Giving the address of the variable is necessary because the ``pthread_join`` function will change the value handled by the ``threadResult`` variable.
 
-It is also interesting to watch how to check the value of the ``threadResult`` variable (in the if command in the previous code). Since ``threadResult`` is ``void *``, first we need to cast the variable for ``(int *)`` and, after that, check the content of the address stored in ``threadResult`` variable. The following figure illustrates the procedure.
+It is worths watch how to check the value of the ``threadResult`` variable (in the if command in the previous code). Since ``threadResult`` is ``void *``, we need to cast the variable for ``(int *)`` first and, after that, check the address's content stored in ``threadResult`` variable. The following figure illustrates the procedure.
 
 <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadCastingPointer.png?raw=true" align="center" width=376 />
 
-Finally, since we do not need the contents of the address pointed by the ``threadResult`` variable anymore, we can free up the memory and let the next call of ``pthread_join`` allocates the new content of ``threadResult`` variable.
+Finally, since we do not need the address's contents pointed by the ``threadResult`` variable anymore, we can free up the memory and let the next call of ``pthread_join`` allocates the new ``threadResult`` variable.
 
 ### The thread function
 Now, let us change our focus to the thread funcion in the ``searchThreads.c`` file. I want to highlight how can we copy the arguments we pass to the thread. The code for copy the arguments are as follows.
@@ -109,20 +109,20 @@ element = ((parameters *) args)->element;
 array = ((parameters *) args)->array;
 found = ((parameters *) args)->found;
 ```
-Notice that, as stated [before](#Structure-to-handle-the-thread-input-parameters), we embed the parameters in an structure called ``parameters``. Also, we passed an address for that structure as an argument for this thread.
+Notice that, as stated [before](#Structure-to-handle-the-thread-input-parameters), we embed the parameters in a structure called ``parameters``. Also, we passed an address for that structure as an argument for this thread.
 
-Therefore, to extract the parameters, we should first cast the ``args`` variable as type ``(parameters *)`` and then acess the specific field of the structure with the operator ``->``. 
+Therefore, to extract the parameters, we should first cast the ``args`` variable as type ``(parameters *)`` and then access the specific field of the structure with the operator ``->``. 
 
-I usually declare local variables and copy the contents of structure fields into the variables. But, if you feel comfortable, you can use the structure fields directally.
+I usually declare local variables and copy the contents of structure fields into the variables. But, if you feel comfortable, you can use the structure fields directlly.
 
-We must highlight one specific detail for this problem. Notice that the variable ``found`` is a pointer and stores an address. Intentionally, this address is the same for all threads because, once a thread changes the contents of this addess, this will break the search loop in all other threads (as stated in the loop in line 62 in file ``searchThread.c``).
+We must highlight one specific detail for this problem. Notice that the variable ``found`` is a pointer and stores an address. Intentionally, this address is the same for all threads because, once a thread changes this address's  contents, it will break the search loop in all other threads (as stated in the loop in line 62 in file ``searchThread.c``).
 
 #### Returning data from a thread
-Remember that this thread should return the position of the found element or ``-1``. So, to return any data we should allocate memory to handle the data, copy the data for the allocated memory and return the memory address. We performed these steps with the variable ``position`` within the ``searchThread`` function. Following there are the commands we used.
+Remember that this thread should return the position of the found element or ``-1``. So, to return any data, we should allocate memory to handle the data, copy the data for the allocated memory and return the memory address. We performed these steps with the variable ``position`` within the ``searchThread`` function. Following are the commands we used.
 
 ```c
 /** 
- * Let's alocate the position variable in memory. 
+ * Let's allocate the position variable in memory. 
  */
  if ((position = (int *) malloc(sizeof(int))) == NULL)
  {
@@ -152,7 +152,7 @@ Remember that this thread should return the position of the found element or ``-
  return ((void *) position);
 }
 ```
-Notice that, when return the ``position`` variable, we must cast it to ``(void *)`` to avoid compiler warnings.
+Notice that we must cast it to (void *) to avoid compiler warnings when returning the ``position`` variable.
 
 # Compiling and running
 To compile this code, you can use the following command line:
@@ -160,7 +160,7 @@ To compile this code, you can use the following command line:
 make
 ```
 
-It will compile all the files separately and, if everything is correct, it will build the program from the object files generated. The ``make`` command will show you the lines used in each step of the process.
+It will compile all the files separately. If everything is correct, it will build the program from the object files generated. The ``make`` command will show you the lines used in each step of the process.
 
 # What's next?
 

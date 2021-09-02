@@ -43,7 +43,7 @@ void *searchThread(void *args)
   free(args);
 
   /** 
-   * Let's alocate the position variable in memory. 
+   * Let's allocate the position variable in memory. 
    */
   if ((position = (int *) malloc(sizeof(int))) == NULL)
   {
