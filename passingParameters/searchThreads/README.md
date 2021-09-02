@@ -94,5 +94,7 @@ In the previous code, we should highlight some details. Let us observe the ``pth
 The second parameter ``&threadResult`` is the address of a pointer, which will handle the address returned by the thread. If you look at line 34, you will see that I declared ``threadResult`` as ``void *``. Yet, I still passed the address of this variable to the ``pthread_join`` function. This is necessary because the ``pthread_join`` function will change the value handled by the ``threadResult`` variable.
 
 It is also interesting to watch how to check the value of the ``threadResult`` variable (in the if command in the previous code). Since ``threadResult`` is ``void *``, first we need to cast the variable for ``(int *)`` and, after that, check the content of the address stored in ``threadResult`` variable. The following figure illustrates the procedure.
+<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadCastingPointer.png?raw=true" align="center" width=376 />
 
-<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadCastingPointer.png?raw=true" align="right" width=376 />
+Finally, since we do not need the contents of the address pointed by the ``threadResult`` variable anymore, we can free up the memory and let the next call of ``pthread_join`` allocates the new content of ``threadResult`` variable.
+
