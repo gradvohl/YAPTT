@@ -18,4 +18,4 @@ We can use similar reasoning for returning data from a thread in PThreads API. I
 I want to highlight that all local variables, i.e. the variables declared inside a function, will vanish as soon as the function finishes (returns). Therefore, the programmer cannot return the address of local variables.
 
 # Time to code
-Let us see how parameter passing works in PThreads API with an example in directory [searchThreads](searchthreads).
+Let us see how parameter passing works in PThreads API with an example in directory [searchThreads](searchThreads).
