@@ -153,3 +153,15 @@ Remember that this thread should return the position of the found element or ``-
 }
 ```
 Notice that, when return the ``position`` variable, we must cast it to ``(void *)`` to avoid compiler warnings.
+
+# Compiling and running
+To compile this code, you can use the following command line:
+```bash
+make
+```
+
+It will compile all the files separately and, if everything is correct, it will build the program from the object files generated. The ``make`` command will show you the lines used in each step of the process.
+
+# What's next?
+
+Now, you can see how to pass parameters to threads and get returns. Or, if you prefer, you can get back to the main page.
