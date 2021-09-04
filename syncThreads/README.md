@@ -35,7 +35,7 @@ However, it is important to mention that there is no guarantee that the desired 
 Section ZZZ brings an example for Condition variables.
 
 ## Barriers
-Barriers are a method to synchronize a group of threads at some point in each thread code. When all the threads reach a barrier, they will be released from the barrier.
+Barriers are a method to synchronize a group of threads at some point in each thread code. When all the threads reach a barrier, it will release them.
 
-Section WWW brings an example for barriers.
+Section WWW brings an example of barriers.
 
