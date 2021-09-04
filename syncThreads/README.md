@@ -22,13 +22,20 @@ The following table summarizes the methods we will approach, their utilization, 
 The reader can observe that the methods follow a life cycle: initialize the variables, block and unblock, deallocate the variables. Also, it is important to notice that the variables used in all those methods are operating system resources. Therefore, the programmer must allocate (initialize) them at the beginning of their use and deallocated them when no longer needed.
 
 ## Semaphores and Mutexes
-Semaphores and Mutexes are very alike. The main difference between them is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will lock the thread.
+Semaphores and Mutexes are very alike. The main difference is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will lock the thread.
 
-Sections XXX and YYY will present examples for using Semaphores and Mutexes respectivaly.
+Sections XXX and YYY will present examples for using Semaphores and Mutexes, respectively.
 
 ## Condition variables
-Condition variables allow threads to synchronize to a value of a shared resource. Typically, condition variables are used as a notification system between threads. 
+As the name suggests, condition variables block a thread until a particular condition becomes true. Therefore, we use
+condition variables as a notification system between threads. 
+
+However, it is important to mention that there is no guarantee that the desired condition still exists after the unlocking. So, the programmer should check if the thread met the desired condition.
+
+Section ZZZ brings an example for Condition variables.
 
 ## Barriers
-Barriers are a method to synchronize a set of threads at some point in time by having all participating threads
+Barriers are a method to synchronize a group of threads at some point in each thread code. When all the threads reach a barrier, they will be released from the barrier.
+
+Section WWW brings an example for barriers.
 
