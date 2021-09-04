@@ -162,6 +162,11 @@ make
 
 It will compile all the files separately. If everything is correct, it will build the program from the object files generated. The ``make`` command will show you the lines used in each step of the process.
 
+To run the program, issue the following command. The program will present the array and ask you what element you want to search.
+```bash
+./searchThreads
+```
+
 # What's next?
 
-Now, you can see how to pass parameters to threads and get returns. Or, if you prefer, you can get back to the main page.
+Next, we will talk about [threads synchronization](../../syncThreads). Or, if you prefer, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
