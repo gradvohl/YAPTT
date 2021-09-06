@@ -24,7 +24,7 @@ The reader can observe that the methods follow a life cycle: initialize the vari
 ## Semaphores and Mutexes
 Semaphores and Mutexes are very alike. The main difference is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will lock the thread.
 
-Sections XXX and YYY will present examples for using Semaphores and Mutexes, respectively.
+Section XXX will present examples for using Semaphores and Mutexes.
 
 ## Condition variables
 As the name suggests, condition variables block a thread until a particular condition becomes true. Therefore, we use
