@@ -1,14 +1,16 @@
 /**
- * Functions to support the program to exemplify the use 
- * of the PThread library.
- * The program creates multiple threads to search for an
- * element in an unordered array of non-repeating elements.
+ * Program to exemplify the use of semaphores with PThread
+ * library.
+ * The program uses multiple threads to search for the
+ * largest element in an array of unordered non-repeating
+ * integers.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
  */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <semaphore.h>
 #include "searchThreads.h"
 
 /**
@@ -20,22 +22,24 @@
  *         position of the element in the array or -1 if it
  *         was not found.
  */
-void *searchThread(void *args)
+void *searchLargestElementThread(void *args)
 {
   register unsigned int begin, end, i;
-  int element;
+  unsigned int position;
+  int element = INT_MIN;
   int *array;
-  int *position;
-  short *found;
+  sem_t *semaphore;
+  largestElementStrucuture *largestElementField;
 
   /**
    * Copy the parameters in 'args' for local variables.
    */
-  begin = ((parameters *) args)->begin;
+  position = begin = ((parameters *) args)->begin;
   end = ((parameters *) args)->end;
-  element = ((parameters *) args)->element;
   array = ((parameters *) args)->array;
-  found = ((parameters *) args)->found;
+  semaphore = ((parameters *) args)->semaphore;
+  largestElementField = ((parameters *) args)->largestElementField;
+
 
   /**
    * We don't need 'args' anymore. So, let's free up the memory.
@@ -43,35 +47,30 @@ void *searchThread(void *args)
   free(args);
 
   /** 
-   * Let's allocate the position variable in memory. 
-   */
-  if ((position = (int *) malloc(sizeof(int))) == NULL)
-  {
-    fprintf(stderr, "Problems in memory allocation inside thread: %ld\n",
-            pthread_self());
-    exit(EXIT_FAILURE);
-  }
-
-  *position = -1;
-
-  /** 
    * Searching in the partition. 
    * If it is found, let's break the loop and warn the other threads
    * that this thread found the position of the element.
    */
-  for (i = begin; i <= end && !(*found); i++)
-    if (array[i] == element)
+  for (i = begin; i <= end; i++)
+    if (array[i] > element)
     {
-      *position = i;
-      *found = TRUE;
+      element = array[i];
+      position = i;
     }
 
   /**
-   * Return the position.  
-   * If this thread didn't find the element, 
-   * return *position == -1.
+   * Block the access to the shared variable, and 
+   * update it if necessary. 
    */
-  pthread_exit((void *) position);
+  sem_wait(semaphore);
+  if (element > largestElementField->element)
+  {
+    largestElementField->element = element;
+    largestElementField->position = position;
+  }
+  sem_post(semaphore);
+
+  pthread_exit(NULL);
 }
 
 /**
@@ -81,14 +80,14 @@ void *searchThread(void *args)
  *
  * @param begin Begin of the partition.
  * @param end End of the partition.
- * @param element Element to be searched for in the array.
  * @param array Array Where the thread will search.
- * @param found A flag to indicate if the element was found.
  *
  * @return The address of the allocated structure.
  */
 parameters *parametersAllocation(unsigned int begin, unsigned int end,
-                                 int element, int *array, short *found)
+                                 int *array, sem_t * semaphore,
+                                 largestElementStrucuture *
+                                 largestElementField)
 {
   parameters *p;
 
@@ -100,9 +99,9 @@ parameters *parametersAllocation(unsigned int begin, unsigned int end,
 
   p->begin = begin;
   p->end = end;
-  p->element = element;
   p->array = array;
-  p->found = found;
+  p->semaphore = semaphore;
+  p->largestElementField = largestElementField;
 
   return p;
 }
