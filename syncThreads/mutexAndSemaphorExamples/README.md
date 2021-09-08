@@ -87,14 +87,14 @@ As we did in previous examples, we divided the code into different files to faci
 To use semaphores, we must also include the ``semaphore.h`` header that will give us the primitives and data types for using them.
 
 ### Semaphore declaration, initialization, and destroy
-Now, let us look at the ``main.c`` file that contains the function ``largestElement`` (in line 33), which is responsible for instantiating the threads. In that function, in line 38, we declared the ``sem_t semaphore`` variable, which we will use to synchronize the threads.
+Now, let us look at the ``mainSemaphore.c`` file that contains the function ``largestElement`` (in line 33), which is responsible for instantiating the threads. In that function, in line 38, we declared the ``sem_t semaphore`` variable, which we will use to synchronize the threads.
 
 After the declaration, in line 50, we initialized the ``semaphore`` variable using the ``sem_init`` primitive. That primitive receives three parameters: the semaphore address, a flag to indicate if the semaphore is shared between threads (0) or if it is shared among processes (non zero), and the initial value (greater than or equal to zero). 
 
 After initializing the semaphore, we can use it to block or unblock other threads, as we will describe later. Then, when we do not need the semaphore anymore, we can destroy it with the command ``sem_destroy``, as we did in line 94. 
 
 ### Structure to handle the parameters
-For the thread to work, we will pass various parameters embedded in a structure defined in file ``searchThreads.h`` and replicated as follows.
+For the thread to work, we will pass various parameters embedded in a structure defined in file ``searchThreadsSemaphore.h`` and replicated as follows.
 
 ```c
 typedef struct
@@ -120,7 +120,7 @@ Notice that the ``parameters`` structure has the following fields:
 - ``largestElementField`` to store the address of a structure to handle the largest element and its position.
 
 ### Defining the mutual exclusion zone within the thread code
-Now, let us focus on the thread code in file ``searchThreads.c``, within the function ``searchLargestElementThread`` (in line 25). We first declare all the local variables to handle the parameters passed to the thread, including the semaphore and the structure to handle the largest element and its position.
+Now, let us focus on the thread code in file ``searchThreadsSemaphore.c``, within the function ``searchLargestElementThread`` (in line 25). We first declare all the local variables to handle the parameters passed to the thread, including the semaphore and the structure to handle the largest element and its position.
 
 After copying the parameters to local variables, the thread searches for the largest element in its partition. Next, we use the command ``sem_wait(semaphore);`` to block access to the critical region (i. e., the ``largestElementField`` variable).
 
@@ -141,4 +141,9 @@ sem_post(semaphore);
 ```
 
 ### Compiling and running the code
-To compile the code, you can issue the ``make`` command. To run the program, you can issue the command ``./searchThreads``.
+The instructions for compiling are in the ``makefileSemaphore`` file. Therefore, to compile the code, you can issue the following make command.
+```sh
+make -f makefileSemaphore
+```
+
+To run the program, you can issue the command ``./searchThreadsSemaphore``.
