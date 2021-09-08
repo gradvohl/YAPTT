@@ -55,7 +55,7 @@ After copying the parameters to local variables, the thread searches for the lar
 
 Notice that, if the address pointed by the ``semaphore`` variable has a value greater than zero, the ``sem_wait`` primitive will decrement that value. Otherwise, if that value is zero, the thread who called the ``sem_wait`` primitive is blocked.
 
-Therefore, if a thread passes through the ``sem_wait`` primitive, it can safely handles the ``largestElementField`` variable. When leaving the crictical region, the thread must call the ``sem_post`` primitive to increment (and unlock other blocked threads) the address pointed by the ``semaphore`` variable.
+Therefore, if a thread passes through the ``sem_wait`` primitive, it can safely handle and update the ``largestElementField`` variable. When leaving the crictical region, the thread must call the ``sem_post`` primitive to increment (and unlock other blocked threads) the address pointed by the ``semaphore`` variable.
 
 I replicate the code as follows.
 
