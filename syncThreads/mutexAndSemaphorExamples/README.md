@@ -81,6 +81,8 @@ make -f makefileMutex
 
 To run the program, you can issue the command ``./searchThreadsMutex``.
 
+Next, we will see the solution using semaphores. Again, the program structure is the same, and only the synchronization primitives are different.
+
 ## Semaphore solution
 As we did in previous examples, we divided the code into different files to facilitate some abstractions. Therefore, we will focus on the details of semaphores and synchronization. I documented the rest of the code, so it will be easy to understand.
 
