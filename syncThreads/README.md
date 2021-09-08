@@ -31,7 +31,7 @@ The following table summarizes the methods we will approach, their utilization, 
 The reader can observe that the methods follow a life cycle: initialize the variables, block and unblock, deallocate the variables. Also, it is important to notice that the variables used in all those methods are operating system resources. Therefore, the programmer must allocate (initialize) them at the beginning of their use and deallocated them when no longer needed.
 
 ## Semaphores and Mutexes
-Semaphores and Mutexes are very alike. The main difference is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will lock the thread.
+Semaphores and Mutexes are very alike. The main difference is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will block the thread.
 
 Directory [mutexAndSemaphorExamples](mutexAndSemaphorExamples) will present examples for using Semaphores and Mutexes.
 
@@ -41,10 +41,9 @@ condition variables as a notification system between threads.
 
 However, it is important to mention that there is no guarantee that the desired condition still exists after the unlocking. So, the programmer should check if the thread met the desired condition.
 
-Section ZZZ brings an example for Condition variables.
+Directory [conditionVariableExample](conditionVariableExample) brings an example for condition variables.
 
 ## Barriers
 Barriers are a method to synchronize a group of threads at some point in each thread code. When all the threads reach a barrier, it will release them.
 
-Section WWW brings an example of barriers.
-
+Directory [barrierExample](barrierExample) brings an example for barriers.
