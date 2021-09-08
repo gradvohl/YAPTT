@@ -20,6 +20,34 @@ Now, let us look at the ``main.c`` file that contains the function ``largestElem
 
 After the declaration, in line 50, we initialized the ``semaphore`` variable using the ``sem_init`` primitive. That primitive receives three parameters: the semaphore address, a flag to indicate if the semaphore is shared between threads (0) or if it is shared among processes (non zero), and the initial value (greater than or equal to zero). 
 
-After initializing the semaphore, we can use it to block or unblock other threads, as we will describe later. Then, when we do not need the semaphore anymore, we can destroy it with the command ``sem_destroy``, as we did in line 94. A
+After initializing the semaphore, we can use it to block or unblock other threads, as we will describe later. Then, when we do not need the semaphore anymore, we can destroy it with the command ``sem_destroy``, as we did in line 94. 
+
+### Structure to handle the parameters
+For the thread to work, we will pass various parameters embedded in a structure defined in file ``searchThreads.h`` and replicated as follows.
+```c
+typedef struct
+{
+  unsigned int position;
+  int element;
+} largestElementStrucuture;
+
+typedef struct
+{
+  int *array;
+  unsigned int begin;
+  unsigned int end;
+  sem_t *semaphore;
+  largestElementStrucuture *largestElementField;
+} parameters;
+```
+
+Notice that the ``parameters`` structure has the following fields:
+- ``array`` to handle the address of the array with the integers.
+- ``begin`` and  ``end`` with the first and last positions of the array (partition) the thread will work on.
+- ``semaphore`` to store the address of the semaphore shared between threads.
+- ``largestElementField`` to store the address of a strucutre to handle the largest element and its position.
+
+### Defining the mutual exclusion zone within the thread code
+Let us focus on the thread code in file ``searchThreads.c``, within the function ``searchLargestElementThread`` (in line 25). 
 
 
