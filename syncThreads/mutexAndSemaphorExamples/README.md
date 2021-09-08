@@ -1,5 +1,5 @@
 # Mutex and Semaphore examples
-This section shows how to implement synchronization, one of them using mutex and the other using semaphores. As mention before, mutexes and semaphores are very alike. The difference is that semaphores can handle values greater or equal to zero, while mutexes handle two states: lock and unlock.
+This section shows how to implement synchronization, one of them using mutex and the other using semaphores. As mention before, mutex and semaphore are very alike. The difference is that a semaphore can handle values greater or equal to zero, while a mutex handles two states: lock and unlock.
 
 ## Problem description and the strategy to solve it
 The problem is to search for the maximum value in an array of 40 non-ordered random integers. Therefore, we will divide the array into four partitions and let each thread calculates the largest value in the partition assigned to it. 
@@ -8,7 +8,7 @@ In the end, each thread compares its largest integer found with a shared variabl
 
 As the reader may suspect, that shared variable is a **critical region**. Therefore, we should create a **mutual exclusion zone** around this critical region to ensure that only one thread at a time will query and, if necessary, change the value of this variable.
 
-First, we will present the solution using [mutexes](#Mutex-solution). After, we will present the solution using [semaphores](#Semaphore-solution). The programs are very similar. The main difference is in the commands used to establish the mutual exclusion zone.
+First, we will present the solution using a [mutex](#Mutex-solution). After, we will present the solution using a [semaphore](#Semaphore-solution). The programs are very similar. The main difference is in the commands used to establish the mutual exclusion zone.
 
 ## Mutex solution
 As we did in previous examples, we divided the code into different files to facilitate some abstractions. Therefore, we will focus on the details of using a mutex for synchronization. I documented the rest of the code, so it will be easy to understand.
