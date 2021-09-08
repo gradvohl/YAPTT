@@ -69,6 +69,5 @@ if (element > largestElementField->element)
 sem_post(semaphore);
 ```
 
-
-
-
+### Compiling and running the code
+To compile the code, you can issue the ``make`` command. To run the program, you can issue the command ``./searchThreads``.
