@@ -24,6 +24,7 @@ After initializing the semaphore, we can use it to block or unblock other thread
 
 ### Structure to handle the parameters
 For the thread to work, we will pass various parameters embedded in a structure defined in file ``searchThreads.h`` and replicated as follows.
+
 ```c
 typedef struct
 {
@@ -48,6 +49,15 @@ Notice that the ``parameters`` structure has the following fields:
 - ``largestElementField`` to store the address of a strucutre to handle the largest element and its position.
 
 ### Defining the mutual exclusion zone within the thread code
-Let us focus on the thread code in file ``searchThreads.c``, within the function ``searchLargestElementThread`` (in line 25). 
+Now, let us focus on the thread code in file ``searchThreads.c``, within the function ``searchLargestElementThread`` (in line 25). We first declare all the local variables to handle the parameters passed to the thread, including the semaphore and the structure to handle the largest element and its position.
+
+After copying the parameters to local variables, the thread searches for the largest element in its partition. Next, we use the command ``sem_wait(semaphore);`` to block the access to the crictical region (i. e. the ``largestElementField`` variable).
+
+Notice that, if the address pointed by the ``semaphore`` variable has a value greater than zero, the ``sem_wait`` primitive will decrement that value. Otherwise, if that value is zero, the thread who called the ``sem_wait`` primitive blocks.
+
+Therefore, if a thread 
+
+
+
 
 
