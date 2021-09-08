@@ -3,7 +3,7 @@
 # Author: Andre Leon S. Gradvohl, Dr.
 #
 # Program name
-MAIN=searchThreadsSemaphore
+MAIN=searchThreadsMutex
 # Defaultcompiler.
 CC=gcc
 #
@@ -14,10 +14,10 @@ CCFLAGS=-Wall
 LIBS=-pthread $(PROJECTLIB)
 # 
 # Source files
-SOURCES=mainSemaphore.c searchThreadsSemaphore.c funcs.c
+SOURCES=mainMutex.c searchThreadsMutex.c funcs.c
 #
 # Header files
-HEADERS=searchThreadsSemaphore.h funcs.h
+HEADERS=searchThreadsMutex.h funcs.h
 #
 # Object files
 OBJECTS=$(SOURCES:.c=.o)

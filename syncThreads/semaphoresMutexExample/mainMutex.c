@@ -1,5 +1,5 @@
 /**
- * Program to exemplify the use of semaphores with PThread 
+ * Program to exemplify the use of mutex with PThread 
  * library.
  * The program uses multiple threads to search for the 
  * largest element in an array of unordered non-repeating 
@@ -10,9 +10,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <semaphore.h>
 #include "funcs.h"
-#include "searchThreads.h"
+#include "searchThreadsMutex.h"
 #define SIZE 40
 #define NTHREADS 4
 
@@ -35,7 +34,7 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
   unsigned int i;
   parameters *p;
   register unsigned int begin, end;
-  sem_t semaphore;
+  pthread_mutex_t mutex;
   largestElementStrucuture largestElementField;
   pthread_t *threadIDs;
 
@@ -45,9 +44,9 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
   threadIDs = threadIDsAllocation(nthreads);
 
   /**
-   * Initialize the semaphore.
+   * Initialize the mutex.
    */
-  sem_init(&semaphore, 0, 1);
+  pthread_mutex_init(&mutex, NULL);
 
   /**
    * Initialize the largestElementStrucuture.
@@ -68,7 +67,7 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
 
     /* Allocate the parameters for this specific thread. */
     p = parametersAllocation(begin, end, array,
-                             &semaphore, &largestElementField);
+                             &mutex, &largestElementField);
 
     /* Create the specific thread. */
     if (pthread_create(&threadIDs[i], NULL, searchLargestElementThread, p))
@@ -88,10 +87,10 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
   }
 
   /**
-   * We don't need the semaphore anymore. 
+   * We don't need the mutex anymore. 
    * So, we desallocate it.
    */ 
-  sem_destroy(&semaphore);
+  pthread_mutex_destroy(&mutex);
 
   /**
    * Print the largest element.

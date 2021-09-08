@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
-#include "searchThreads.h"
+#include "searchThreadsSemaphore.h"
 
 /**
  * Thread to search for an element in an array partition.

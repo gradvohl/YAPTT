@@ -12,7 +12,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include "funcs.h"
-#include "searchThreads.h"
+#include "searchThreadsSemaphore.h"
 #define SIZE 40
 #define NTHREADS 4
 
