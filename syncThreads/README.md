@@ -1,5 +1,10 @@
 # Synchronizing threads
-Most of the time, when we write multithread programs, we want to create a pool of threads to cooperate for solving a problem. However, for cooperation to occur, the threads must exchange information (communicate) with each other. Also, almost whenever we have communication, we need synchronization.
+Most of the time, when we write multithread programs, we want to create a pool of threads to cooperate for solving a problem. However, for cooperation to occur, the threads must exchange information (communicate) with each other. 
+
+The communication among threads occurs using shared variables. Since a process can handle multiple threads, using a global scope variable is an easy way to share a variable among threads. However, personally, I do not like to use global variables for a number of reasons (namespace pollution, possible alteration in other parts of the code etc). Therefore, the alternative is to dynmically allocate a memory location and share the address of that memory location amnog the threads.
+
+Either way, everytime threads share an object (memory locations, open files etc), that object is in the core of what we call as **crictical region** of the code. A crictical region, as the name suggests, should have an special attention by the programmer. Especially when an operation (or a set of operations) can change the contents of a shared object in a crictical region. Therefore, the programmer should create a **mutual exclusion zone** to ensure that only one thread at a time performs its operations at shared objects inside that critical region.
+
 
 In this section, we will talk about some strategies for synchronization among threads. In this tutorial, we will focus on the following methods:
 - Semaphores.
