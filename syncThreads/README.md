@@ -3,11 +3,14 @@ Most of the time, when we write multithread programs, we want to create a pool o
 
 The communication among threads occurs using shared variables. Since a process can handle multiple threads, using a global scope variable is an practical way to share a variable among threads. However, I am not particularly eager to use global variables for several reasons (namespace pollution, possible alteration in other parts of the code etc). Therefore, the alternative is to dynamically allocate a memory location and share the address of that memory location among the threads.
 
-Either way, every time threads share an object (memory locations, open files etc), that object is in the core of the code's **critical region**. As the name suggests, a critical region should have exceptional attention by the programmer, especially when an operation (or a set of operations) can change the contents of a shared object in a critical region. Therefore, the programmer should create a **mutual exclusion zone** to ensure that only one thread at a time performs its operations at shared objects inside that critical region.
+Either way, every time threads share an object (variables, memory locations, open files etc), that object is in the core of the code's **critical region**. As the name suggests, a critical region should have exceptional attention by the programmer, especially when an operation (or a set of operations) can change the contents of a shared object in a critical region. Therefore, the programmer should create a **mutual exclusion zone** to ensure that only one thread at a time performs its operations at shared objects inside that critical region. The procedure in which a thread signals that other threads should wait for an operation to complete before continuing is synchronization.
+
+In few words, creating a mutual exclusion zone in a code involves using commands to block a thread just before the zone and unblock the other threads after the zone. Blocking and unblocking operations require a shared variable (or memory location) among threads.
 
 The programmers must be careful about the mutual exclusion zones they define. Mutual exclusion zones can degrade program's performance since threads must wait before accessing the zone. On the other hand, creating fewer mutual exclusion zones than necessary can lead to inconsistencies in shared objects.
 
-In this section, we will talk about some tools (commands) for synchronization among threads. In this tutorial, we will focus on the following methods:
+## Strategies for threads synchronization
+In this section, we will talk about some strategies for synchronization among threads. In this tutorial, we will focus on the following methods:
 - Semaphores.
 - Mutexes.
 - Condition variables.
