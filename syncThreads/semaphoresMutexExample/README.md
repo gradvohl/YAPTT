@@ -46,16 +46,16 @@ Notice that the ``parameters`` structure has the following fields:
 - ``array`` to handle the address of the array with the integers.
 - ``begin`` and  ``end`` with the first and last positions of the array (partition) the thread will work on.
 - ``semaphore`` to store the address of the semaphore shared between threads.
-- ``largestElementField`` to store the address of a strucutre to handle the largest element and its position.
+- ``largestElementField`` to store the address of a structure to handle the largest element and its position.
 
 ### Defining the mutual exclusion zone within the thread code
 Now, let us focus on the thread code in file ``searchThreads.c``, within the function ``searchLargestElementThread`` (in line 25). We first declare all the local variables to handle the parameters passed to the thread, including the semaphore and the structure to handle the largest element and its position.
 
-After copying the parameters to local variables, the thread searches for the largest element in its partition. Next, we use the command ``sem_wait(semaphore);`` to block the access to the crictical region (i. e. the ``largestElementField`` variable).
+After copying the parameters to local variables, the thread searches for the largest element in its partition. Next, we use the command ``sem_wait(semaphore);`` to block access to the critical region (i. e., the ``largestElementField`` variable).
 
-Notice that, if the address pointed by the ``semaphore`` variable has a value greater than zero, the ``sem_wait`` primitive will decrement that value. Otherwise, if that value is zero, the thread who called the ``sem_wait`` primitive is blocked.
+Notice that if the address pointed by the ``semaphore`` variable has a value greater than zero, the ``sem_wait`` primitive will decrement that value. Otherwise, if that value is zero, the thread that called the ``sem_wait`` primitive is blocked.
 
-Therefore, if a thread passes through the ``sem_wait`` primitive, it can safely handle and update the ``largestElementField`` variable. When leaving the crictical region, the thread must call the ``sem_post`` primitive to increment (and unlock other blocked threads) the address pointed by the ``semaphore`` variable.
+Therefore, if a thread passes through the ``sem_wait`` primitive, it can safely handle and update the ``largestElementField`` variable. Besides, when leaving the critical region, the thread must call the ``sem_post`` primitive to increment (and unlock other blocked threads) the address pointed by the ``semaphore`` variable.
 
 I replicate the code as follows.
 
