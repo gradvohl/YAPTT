@@ -87,6 +87,15 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
     pthread_join(threadIDs[i], NULL);
   }
 
+  /**
+   * We don't need the semaphore anymore. 
+   * So, we desallocate it.
+   */ 
+  sem_destroy(&semaphore);
+
+  /**
+   * Print the largest element.
+   */ 
   fprintf(stdout, "The largest element (%d) is in position %d\n",
           largestElementField.element, largestElementField.position);
 }
