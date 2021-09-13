@@ -66,6 +66,8 @@ void *emptyQueue(void *args)
    *           from never returning.
    *             */
   pthread_mutex_lock(mutex);
+
+  printf("isFull: %d isEmpty():%d\n", isFull() ,isEmpty());
   while (!isFull() || isEmpty())
   {
     fprintf(stdout, "emptyQueue Going into wait...\n");
