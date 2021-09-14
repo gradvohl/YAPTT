@@ -114,6 +114,7 @@ void *generateNumbers(void *arg)
 }
 ```
 
+a
 ### Compiling and running the mutex code
 
 The instructions for compiling are in the ``makefile`` file. Therefore, to compile the code, you can issue the following ``make`` command. 
