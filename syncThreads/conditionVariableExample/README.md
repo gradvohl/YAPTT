@@ -68,7 +68,31 @@ pthread_mutex_destroy(&lock);
 ```
 
 ### Defining the mutual exclusion zone within the thread code
-Let us take a look in the two threads, both in file ``rollDice.c``.
+Let us take a look in the two threads, both in file ``rollDice.c``. In the first thread (``void *blockedThread(void *args)``), it will first acquire a lock to guarantee the access to the mutual exclusion zone. After that, it calls the ``pthread_cond_wait(cond, lock)`` primitive, which will block that thread, waiting for a signal carried by the ``cond``variable. 
+
+When that signal arrives, the ``pthread_cond_wait(cond, lock)`` primitive will also unlock the mutex (within ``lock`` variable).
+
+```c
+void *blockedThread(void *args)
+{
+  pthread_cond_t *cond;
+  pthread_mutex_t *lock;
+
+  cond = ((parameters *) args)->cond;
+  lock = ((parameters *) args)->lock;
+
+  pthread_mutex_lock(lock);
+ 
+  fprintf(stdout, "Waiting on a condition variable.\n");
+  pthread_cond_wait(cond, lock);
+
+  pthread_mutex_unlock(lock);
+
+  fprintf(stdout, "The other thread get a 7. I am out.\n");
+
+  pthread_exit(NULL);
+}
+```
 
 ### Compiling and running the mutex code
 
