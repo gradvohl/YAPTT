@@ -1,8 +1,9 @@
-#ifndef _THREADS_H
-#define _THREADS_H
-#include <pthread.h>
+#ifndef _ROLLDICES
+#  define _ROLLDICES
+#  include <pthread.h>
 
-typedef struct {
+typedef struct
+{
   pthread_cond_t *cond;
   pthread_mutex_t *lock;
 } parameters;
