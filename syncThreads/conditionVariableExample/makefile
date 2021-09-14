@@ -3,7 +3,7 @@
 # Author: Andre Leon S. Gradvohl, Dr.
 #
 # Program name
-MAIN=queueExample
+MAIN=rollDice
 # Defaultcompiler.
 CC=gcc
 #
@@ -14,7 +14,7 @@ CCFLAGS=-Wall
 LIBS=-pthread $(PROJECTLIB)
 # 
 # Source files
-SOURCES=main.c queue.c queueThreadOperations.c
+SOURCES=main.c threads.c
 #
 # Object files
 OBJECTS=$(SOURCES:.c=.o)
