@@ -11,7 +11,7 @@ A solution using condition variable will have the following pattern (considering
  * altering it.
  */
 pthread_mutex_lock(&lock);
-while ( Condition is false)
+while ( Condition is false )
     pthread_cond_wait(&cond, &lock);
 
 /** 
@@ -42,7 +42,7 @@ pthread_cond_signal(&cond);
 /**
  * Leave the mutual exclusion zone.
  */
-pthread_mutex_unlock (&lock)
+pthread_mutex_unlock(&lock)
 ```
 
 
