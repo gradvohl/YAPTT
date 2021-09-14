@@ -50,7 +50,7 @@ pthread_mutex_unlock(&lock)
 In this problem, we have two threads. The first of them will remain blocked until the second thread signalizes that it generates a specific number (7). 
 
 ### Condition variable declaration, initialization, and destroy
-As we mentioned before, it is necessary to declare a condition variable and a mutex. Therefore, the commands are the following:
+As we mentioned before, it is necessary to declare a condition variable and a mutex. The second parameter is ``NULL`` because we will use the default attributes for the variables. Therefore, the commands are the following:
 
 ```c
 pthread_cond_t cond;
