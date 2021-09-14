@@ -50,16 +50,31 @@ pthread_mutex_unlock(&lock)
 In this problem, we have two threads. The first of them will remain blocked until the second thread signalizes that it generates a specific number (7). 
 
 ### Condition variable declaration, initialization, and destroy
+As we mentioned before, it is necessary to declare a condition variable and a mutex. Therefore, the commands are the following:
 
+```c
+pthread_cond_t cond;
+pthread_mutex_t lock;
+
+pthread_cond_init(&cond, NULL);
+pthread_mutex_init(&lock, NULL);
+```
+
+Besides, before the end of the program, the program must destroy those variables with the following commands.
+
+```c
+pthread_cond_destroy(&cond);
+pthread_mutex_destroy(&lock);
+```
 
 ### Defining the mutual exclusion zone within the thread code
 
 
 ### Compiling and running the mutex code
 
-The instructions for compiling are in the ``makefileMutex`` file. Therefore, to compile the code, you can issue the following ``make`` command. 
+The instructions for compiling are in the ``makefile`` file. Therefore, to compile the code, you can issue the following ``make`` command. 
 ```sh
-make -f makefileMutex
+make 
 ```
 
 To run the program, you can issue the command ``./searchThreadsMutex``.
