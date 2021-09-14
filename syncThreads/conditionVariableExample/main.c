@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-#include "rollDices.h"
+#include "rollDice.h"
 
 int main(int argc, char *argv[])
 {

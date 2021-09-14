@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "rollDices.h"
+#include "rollDice.h"
 
 /**
  * This thread remains blocked until the other thread
