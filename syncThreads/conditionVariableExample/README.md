@@ -68,7 +68,7 @@ pthread_mutex_destroy(&lock);
 ```
 
 ### Defining the mutual exclusion zone within the thread code
-
+Let us take a look in the two threads, both in file ``rollDice.c``.
 
 ### Compiling and running the mutex code
 
