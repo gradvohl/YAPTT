@@ -70,7 +70,7 @@ pthread_mutex_destroy(&lock);
 ### Defining the mutual exclusion zone within the thread code
 Let us take a look in the two threads, both in file ``rollDice.c``. In the first thread (``void *blockedThread(void *args)``), it will first acquire a lock to guarantee the access to the mutual exclusion zone. After that, it calls the ``pthread_cond_wait(cond, lock)`` primitive, which will block that thread, waiting for a signal carried by the ``cond``variable. 
 
-When that signal arrives, the ``pthread_cond_wait(cond, lock)`` primitive will also unlock the mutex (within ``lock`` variable).
+It is important that the thread has the mutex locked by the calling thread or and undefined behavior will happen. That is the reason for acquiring the lock before.
 
 ```c
 void *blockedThread(void *args)
@@ -90,6 +90,26 @@ void *blockedThread(void *args)
 
   fprintf(stdout, "The other thread get a 7. I am out.\n");
 
+  pthread_exit(NULL);
+}
+```
+
+Now, let us focus on the ``void *generateNumbers(void *arg)`` thread. First, it will receives the address of the shared condition variable. Then, it will generates random numbers until it finds the number 7. After that, it will signalizes it to the other thread using the ``pthread_cond_signal(cond);`` command.
+
+```c
+void *generateNumbers(void *arg)
+{
+  register unsigned int i;
+  pthread_cond_t *cond;
+
+  cond = ((pthread_cond_t *) arg);
+
+  do {
+      fprintf(stdout, "Number: %d\n", i = rand() % 8);
+  } while (i != 7);
+
+  fprintf(stdout, "I get a 7. Releasing the other thread!\n");
+  pthread_cond_signal(cond);
   pthread_exit(NULL);
 }
 ```
