@@ -1,7 +1,7 @@
 # Barrier example
 This section shows how to use barriers to provide synchronization. In the synchronization context, the barrier is a point in the codes of each of the threads such that all threads arriving at that point must be blocked until everyone arrives. After all threads arrive, they are all unblocked and can continue their execution after that point in their code. The following figure illustrates the synchronization with barriers 
 
-<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadBarriers.png?raw=true" class="center" width=335 />
+<img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadBarriers.png?raw=true" class="center" width=327 />
 
 The programmer may think that the ``pthread_join`` primitive is a type of barrier. That is a correct understanding. However, the ``pthread_join`` primitive signalizes that a thread is finished. 
 
