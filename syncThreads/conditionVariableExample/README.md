@@ -122,6 +122,4 @@ The instructions for compiling are in the ``makefile`` file. Therefore, to compi
 make 
 ```
 
-To run the program, you can issue the command ``./searchThreadsMutex``.
-
-Next, we will see the solution using semaphores. Again, the program structure is the same, and only the synchronization primitives are different.
+To run the program, you can issue the command ``./rollDice``.
