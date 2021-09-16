@@ -1,7 +1,11 @@
+/**
+ * A collection of auxiliary functions.
+ *
+ * Author: Andre Leon S. Gradvohl, Dr.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <time.h>
 #include "funcs.h"
 
 /**
@@ -18,17 +22,14 @@ short exists(int element, int *array, unsigned int begin, unsigned int end)
 {
   register int i;
 
-    for (i = begin; i <= end; i++)
-      if (array[i] == element)
-      {
-        return TRUE;
-      }
+  for (i = begin; i <= end; i++)
+    if (array[i] == element)
+    {
+      return TRUE;
+    }
 
   return FALSE;
 }
-
-
-
 
 /**
  * Creates an array of random integers with a specific size.
@@ -40,8 +41,6 @@ int *createArray(unsigned int size)
 {
   int *array;
 
-  srand(time(NULL));
-
   if ((array = (int *) malloc(sizeof(int) * size)) == NULL)
   {
     fprintf(stderr, "There is an Error in the array memory allocation.\n");
@@ -52,7 +51,7 @@ int *createArray(unsigned int size)
 }
 
 /**
- * Print the array in the screen.
+ * Print the array in the screen, ten elements per line.
  * @param array Array to be printed in the screen.
  * @param size Array size.
  */
@@ -61,36 +60,12 @@ void printArray(int *array, unsigned int size)
   register unsigned int i;
 
   fprintf(stdout, "Array: [");
-  for (i = 0; i < size - 1; i++)
+  for (i = 0; i < (size - 1); i++)
   {
     fprintf(stdout, "%d, ", array[i]);
-    if (!((i+1) % 10))
-       fprintf(stdout, "\n%d:\t",i+1);
+    if (!((i + 1) % 10))
+      fprintf(stdout, "\n%d:\t", i + 1);
   }
 
   fprintf(stdout, "%d]\n", array[i]);
-}
-
-/**
- * Allocates an array of thread identifiers in memory.
- *
- * @param size Size of the array.
- *
- * @return Memory address of the array.
- */ 
-pthread_t *threadIDsAllocation(unsigned int size)
-{
-  pthread_t *threadsIDs = NULL;
-
-  if (size > 0)
-  {
-    if ((threadsIDs =
-         (pthread_t *) malloc(sizeof(pthread_t) * size)) == NULL)
-    {
-      fprintf(stderr, "Problems on allocating threads ids array in memory\n");
-      exit(EXIT_FAILURE);
-    }
-  }
-
-  return threadsIDs;
 }
