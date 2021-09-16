@@ -80,5 +80,10 @@ int main(int argc, char *argv[])
    */
   free(array);
 
+  /**
+   * Destroy the barrier.
+   */
+  pthread_barrier_destroy(&barrier);
+
   return 0;
 }
