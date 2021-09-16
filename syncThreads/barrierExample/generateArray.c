@@ -34,11 +34,9 @@ void *generateAndCheck(void *args)
    */
   for (i = begin; i <= end; i++)
   {
-    do
-    {
+    do {
       number = rand() % (LASTARRAYPOSITION + 1);
-    }
-    while (exists(number, array, begin, end));
+    } while (exists(number, array, begin, end));
 
     array[i] = number;
   }
