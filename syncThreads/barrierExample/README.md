@@ -10,15 +10,14 @@ In some situations, we need to implement a barrier to synchronize threads up to 
 Now, let us depict the use of barriers with an example problem in next section.
 
 ## Problem description and the strategy to solve it
-In this problem, two threads will generate 100 integers to store in a single array. Each thread will generate 50 unrepeated integers in its array partition.
+In this problem, two threads will generate 100 integers to store in a single array. Each thread will generate 50 unrepeated integers in its array partition. After storing the numbers in the array, one of the threads will check and print the values that match in both partitions of the array.
 
-After creating the array, each thread will check if . 
+Therefore, we will need a barrier to assure that both threads fill their partition before one of them search for matched values in the other partition.
 
+### Barrier declaration, initialization, and destroy
+First, it is necessary to declare a barrier and initialize it. 
 
-The first of them will remain blocked until the second thread signalizes that it generates a specific number (7). 
-
-### Condition variable declaration, initialization, and destroy
-As we mentioned before, it is necessary to declare a condition variable and a mutex. The second parameter is ``NULL`` because we will use the default attributes for the variables. Therefore, the commands are the following:
+The second parameter is ``NULL`` because we will use the default attributes for the variables. Therefore, the commands are the following:
 
 ```c
 pthread_cond_t cond;
