@@ -7,7 +7,6 @@
 #define ARRAYSIZE 100
 #define NTHREADS 2
 
-
 int main(int argc, char *argv[])
 {
   register unsigned short i;
@@ -26,11 +25,6 @@ int main(int argc, char *argv[])
     fprintf(stderr, "Cannot create a barrier\n");
     exit(EXIT_FAILURE);
   }
-
-  
-  param[0].barrier = param[1].barrier = &barrier;
-  param[0].array = param[1].array = array;
-
 
   for (i = 0; i < NTHREADS; i++)
   {
