@@ -1,5 +1,5 @@
 # Barrier example
-This section shows how to use barriers to provide synchronization. In the synchronization context, the barrier is a point in the codes of each of the threads such that all threads arriving at that point must be blocked until everyone arrives. After all threads arrive, they are all unblocked and can continue their execution after that point in their code. The following figure illustrates the synchronization with barriers 
+This section shows how to use barriers to provide synchronization in PThreads. In the synchronization context, the barrier is a point in the code of each of the threads such that all threads arriving at that point must be blocked until everyone arrives. After all threads arrive, they are all unblocked and can continue their execution after that point in their code. The following figure illustrates the synchronization with barriers 
 
 <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadBarriers.png?raw=true" class="center" width=327 />
 
@@ -7,9 +7,15 @@ The programmer may think that the ``pthread_join`` primitive is a type of barrie
 
 In some situations, we need to implement a barrier to synchronize threads up to a point in their code, and let them continue after the barrier. In such situations, ``pthread_join`` primitive will not work.
 
+Now, let us depict the use of barriers with an example problem in next section.
 
 ## Problem description and the strategy to solve it
-In this problem, we have two threads. The first of them will remain blocked until the second thread signalizes that it generates a specific number (7). 
+In this problem, two threads will generate 100 integers to store in a single array. Each thread will generate 50 unrepeated integers in its array partition.
+
+After creating the array, each thread will check if . 
+
+
+The first of them will remain blocked until the second thread signalizes that it generates a specific number (7). 
 
 ### Condition variable declaration, initialization, and destroy
 As we mentioned before, it is necessary to declare a condition variable and a mutex. The second parameter is ``NULL`` because we will use the default attributes for the variables. Therefore, the commands are the following:
