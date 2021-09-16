@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcs.h"
 #include "generateArray.h"
 #define LASTARRAYPOSITION 99
 
@@ -18,14 +19,15 @@ void *generateAndCheck(void *args)
   end = ((parameters *) args)->end;
   myID = ((parameters *) args)->myID;
   array = ((parameters *) args)->array;
+  barrier = ((parameters *) args)->barrier;
 
   for (i = begin; i <= end; i++)
   {
     do
     {
-      number = getNumber();
+      number = rand()%LASTARRAYPOSITION;
     }
-    while (exists(number, begin, end, array));
+    while (exists(number, array, begin, end));
 
     array[i] = number;
   }
@@ -47,7 +49,7 @@ void *generateAndCheck(void *args)
     {
       for (j = elseBegin; j <= elseEnd; j++)
         if (array[i] == array[j])
-          fprintf(stdout, "Element: %d found in positions %d and %d",
+          fprintf(stdout, "Element: %d found in positions %d and %d\n",
                   array[i], i, j);
     }
   }

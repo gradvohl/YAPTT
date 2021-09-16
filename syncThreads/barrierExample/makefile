@@ -3,7 +3,7 @@
 # Author: Andre Leon S. Gradvohl, Dr.
 #
 # Program name
-MAIN=rollDice
+MAIN=createAndCheck
 # Defaultcompiler.
 CC=gcc
 #
@@ -14,7 +14,7 @@ CCFLAGS=-Wall
 LIBS=-pthread $(PROJECTLIB)
 # 
 # Source files
-SOURCES=main.c rollDice.c
+SOURCES=funcs.c  generateArray.c  main.c
 #
 # Object files
 OBJECTS=$(SOURCES:.c=.o)
