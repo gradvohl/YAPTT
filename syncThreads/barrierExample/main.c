@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include "generateArray.h"
 #define ARRAYSIZE 100
 #define NTHREADS 2
 
@@ -21,7 +22,8 @@ int main(int argc, char *argv[])
 
   for (i = 0; i < NTHREADS; i++)
   {
-    if (pthread_create(&threadIDs[i], NULL, Thread, (void *) &param[i]))
+    if (pthread_create
+        (&threadIDs[i], NULL, generateAndCheck, (void *) &param[i]))
     {
       fprintf(stderr, "Could not create thread %d\n", i);
       exit(EXIT_FAILURE);
@@ -32,7 +34,7 @@ int main(int argc, char *argv[])
   {
     if (pthread_join(threadIDs[i], NULL))
     {
-      fprintf("Could not join thread %d\n", i);
+      fprintf(stderr, "Could not join thread %d\n", i);
       exit(EXIT_FAILURE);
     }
   }
