@@ -15,72 +15,24 @@ In this problem, two threads will generate 100 integers to store in a single arr
 Therefore, we will need a barrier to assure that both threads fill their partition before one of them search for matched values in the other partition.
 
 ### Barrier declaration, initialization, and destroy
-First, it is necessary to declare a barrier and initialize it. 
-
-The second parameter is ``NULL`` because we will use the default attributes for the variables. Therefore, the commands are the following:
+First, it is necessary to declare a barrier and initialize it. We shall call the following code to declare and initialize a barrier variable.
 
 ```c
-pthread_cond_t cond;
-pthread_mutex_t lock;
-
-pthread_cond_init(&cond, NULL);
-pthread_mutex_init(&lock, NULL);
+pthread_barrier_t barrier;
+pthread_barrier_init(&barrier, NULL, NTHREADS)
 ```
+Notice that the ``pthread_barrier_init`` primitive receives three parameters. First is the address of the barrier variable. The second parameter are the attributes. In most cases, we use ``NULL`` because we will use the default attributes for the variables. The third parameter is the number of threads that will wait in that barrier before all of them continues after the barrier.
 
-Besides, before the end of the program, the program must destroy those variables with the following commands.
+Besides, before the end of the program, the program must destroy the barrier variable with the following commands.
 
 ```c
-pthread_cond_destroy(&cond);
-pthread_mutex_destroy(&lock);
+pthread_barrier_destroy(&barrier);
 ```
 
-### Defining the mutual exclusion zone within the thread code
-Let us take a look in the two threads, both in file ``rollDice.c``. In the first thread (``void *blockedThread(void *args)``), it will first acquire a lock to guarantee the access to the mutual exclusion zone. After that, it calls the ``pthread_cond_wait(cond, lock)`` primitive, which will block that thread, waiting for a signal carried by the ``cond``variable. 
+### Setting the barrier within the thread code
+Let us take a look in the thread code in file ``generateAndCheck.c``. In line 47, we call the ``pthread_barrier_wait(barrier);`` function. In that point in code, a thread will stop and wait until all the threads that share the ``barrier`` variable call the ``pthread_barrier_wait`` function.
 
-It is important that the thread has the mutex locked by the calling thread or and undefined behavior will happen. That is the reason for acquiring the lock before.
-
-```c
-void *blockedThread(void *args)
-{
-  pthread_cond_t *cond;
-  pthread_mutex_t *lock;
-
-  cond = ((parameters *) args)->cond;
-  lock = ((parameters *) args)->lock;
-
-  pthread_mutex_lock(lock);
- 
-  fprintf(stdout, "Waiting on a condition variable.\n");
-  pthread_cond_wait(cond, lock);
-
-  pthread_mutex_unlock(lock);
-
-  fprintf(stdout, "The other thread get a 7. I am out.\n");
-
-  pthread_exit(NULL);
-}
-```
-
-Now, let us focus on the ``void *generateNumbers(void *arg)`` thread. First, it will receives the address of the shared condition variable. Then, it will generates random numbers until it finds the number 7. After that, it will signalizes it to the other thread using the ``pthread_cond_signal(cond);`` command.
-
-```c
-void *generateNumbers(void *arg)
-{
-  register unsigned int i;
-  pthread_cond_t *cond;
-
-  cond = ((pthread_cond_t *) arg);
-
-  do {
-      fprintf(stdout, "Number: %d\n", i = rand() % 8);
-  } while (i != 7);
-
-  fprintf(stdout, "I get a 7. Releasing the other thread!\n");
-  pthread_cond_signal(cond);
-  pthread_exit(NULL);
-}
-```
-
+The ``pthread_barrier_wait`` function may return zero or ``PTHREAD_BARRIER_SERIAL_THREAD``. According to the manual, the constant ``PTHREAD_BARRIER_SERIAL_THREAD`` shall be returned to one unspecified thread and zero shall be returned to each of the remaining threads.
 
 ### Compiling and running the mutex code
 
@@ -89,4 +41,4 @@ The instructions for compiling are in the ``makefile`` file. Therefore, to compi
 make 
 ```
 
-To run the program, you can issue the command ``./rollDice``.
+To run the program, you can issue the command ``./createAndCheck``.
