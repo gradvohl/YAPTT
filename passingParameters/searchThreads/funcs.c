@@ -52,11 +52,11 @@ int *createRandomArray(unsigned int size)
 
   for (i = 0; i < size; i++)
   {
-    element = rand() % (size + 1);
-    if (!exists(element, array, i))
-      array[i] = element;
-    else
-      i--;
+    do {
+      element = rand() % (size + 1);
+    } while (exists(element, array, i));
+
+    array[i] = element;
   }
 
   return array;
