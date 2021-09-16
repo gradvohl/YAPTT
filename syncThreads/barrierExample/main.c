@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
-#include "generateArray.h"
+#include "generateAndCheck.h"
 #include "funcs.h"
 #define ARRAYSIZE 100
 #define NTHREADS 2

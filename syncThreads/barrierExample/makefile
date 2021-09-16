@@ -14,7 +14,7 @@ CCFLAGS=-Wall
 LIBS=-pthread $(PROJECTLIB)
 # 
 # Source files
-SOURCES=funcs.c  generateArray.c  main.c
+SOURCES=funcs.c  generateAndCheck.c  main.c
 #
 # Object files
 OBJECTS=$(SOURCES:.c=.o)

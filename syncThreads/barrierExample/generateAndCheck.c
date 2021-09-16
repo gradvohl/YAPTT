@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "funcs.h"
-#include "generateArray.h"
+#include "generateAndCheck.h"
 #define LASTARRAYPOSITION 99
 
 void *generateAndCheck(void *args)
