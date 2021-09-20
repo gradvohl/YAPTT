@@ -4,7 +4,7 @@ The code we will see is in the file ``firstExample.c``. It is pretty simple and 
 If you want to go straight to the instructions for compiling and executing, go to section [Compiling and running](#Compile-and-running).
 
 ## The header
-As the reader can see in the file ``firstExample.c``, in line 4, we included the ``pthread.h`` header. This header contains all the PThreads functions.
+As the reader can see in the file ``firstExample.c``, in line 6, we included the ``pthread.h`` header. This header contains all the PThreads API functions calls and definitions needed.
 
 ## The thread function
 Now, turn your attention to lines 14 to 22 (depicted as follows). There, we implemented the ``printHello`` thread. Inside that function, the reader can see that in line 18, we used the function ``pthread_self`` to get the thread internal identification (id).  We rarely use this information inside a thread, but it is important to know that each thread has an id, and we can use the ids to synchronize the threads within the main function.
@@ -21,16 +21,16 @@ void *printHello(void *args)
 }
 ```
 
-At the end of the thread, in line 21, notice that we call ``pthread_exit(NULL);`` That call will tell the main function that the thread finished and returns no address.
+At the end of the thread, in line 21, notice that we call the ``pthread_exit(NULL);`` primitive. That primitive will tell the main function that the thread finished and returns no address (``NULL``). If a thread needs to return a value, the address of the variable that stores this value must be indicated in this primitive.
 
 ## The thread creation in the main function
-As we stated before, each process has a main thread. Therefore, let us consider the main function. In line 26, we created an array with ``NUM_THREADS`` positions. This array will handle the threads' ids, which we will use to join the threads after processing.
+As we stated before, each process has a main thread. Therefore, let us consider the main function. In line 26, we created an array with ``NUM_THREADS`` positions. That array will handle the threads' ids, which we will use to join the threads after their processing.
 
 From line 30 to line 40 (depicted as follows), that loop will create five threads, one at each iteration. In line 33, we will use the function ``pthread_create`` to instantiate the threads. The function ``pthread_create`` receives four arguments:
-- The address of a variable to handle id of the created thread.
+- The address of a variable to handle the created thread id.
 - The address of a structure with attributes for thread creation (we will use ``NULL`` to use the default attributes).
 - The name of the function that embeds the thread.
-- The address of the argument that we will pass for the thread (in this case, we will use ``NULL`` because we will not pass any parameters).
+- The address of the argument that we will pass for the thread (in this case, we will use ``NULL`` because we will not pass any arguments).
 
 ```c
 for (t = 0; t < NUM_THREADS; t++)
@@ -48,7 +48,7 @@ for (t = 0; t < NUM_THREADS; t++)
 
 On success, ``pthread_create`` returns 0 to the ``rc`` variable. Then, in line 35, we test if variable ``rc`` has a value different from zero. If that is the case, we print a message in standard error output and leave the program.
 
-If everything works well, after line 40, we will have five threads running in parallel.
+If everything works well, after line 40, we will have six threads running in parallel. If the processor has six or more cores, it is possible that each core runs a different thread.
 
 ## The thread joining in the main function
 Starting in line 42 until line 52 (presented as follows), the main thread will wait for every other thread to join. Specifically in line 45, we used the function ``pthread_join`` to block the main thread until another specific thread finishes. The ``pthread_join`` receives two parameters:
