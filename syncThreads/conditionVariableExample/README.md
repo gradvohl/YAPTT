@@ -1,5 +1,5 @@
 # Condition variable example
-This section shows how to implement synchronization using a Condition Variable (CV). Unlike mutexes, which synchronize thread access to data, a condition variable is a way to signal that a condition happened to other threads. Therefore, the thread that received that signal may unblock itself and perform other operations.
+This section shows how to implement synchronization using a Condition Variable (CV). Unlike mutexe and semaphore, which synchronize thread access to data, a condition variable is a way to signal that a condition happened to other threads. Therefore, the thread that received that signal may unblock itself and perform other operations.
 
 In PThreads library, a CV always works together with a mutex. It works this way because when the CV receives a signal, it unlocks its associated mutex.
 
@@ -48,7 +48,7 @@ pthread_mutex_unlock(&lock)
 
 
 ## Problem description and the strategy to solve it
-In this problem, we have two threads. The first will remain blocked until the second thread signalizes that it generates a specific number (7). 
+In this problem, we will start two threads. The first will remain blocked until the second thread signalizes that it generates a specific number (7). The second thread will generate integers until it finds the number 7.
 
 ### Condition variable declaration, initialization, and destroy
 As we mentioned before, it is necessary to declare a condition variable and a mutex. The second parameter is ``NULL`` because we will use the default attributes for the variables. Therefore, the commands are the following:
@@ -124,3 +124,6 @@ make
 ```
 
 To run the program, you can issue the command ``./rollDice``.
+
+# What's next?
+Now, you can see how to implement synchronization using [Barriers](barrierExample). Or, if you prefer, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
