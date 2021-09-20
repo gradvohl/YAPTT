@@ -27,6 +27,9 @@ int main(int argc, char *argv[])
   int rc;
   int t;
 
+  /**
+   * Creating threads.
+   */
   for (t = 0; t < NUM_THREADS; t++)
   {
     fprintf(stdout, "Starting thread %d\n", t);
@@ -39,6 +42,9 @@ int main(int argc, char *argv[])
     }
   }
 
+  /**
+   * Joining threads.
+   */  
   for (t = 0; t < NUM_THREADS; t++)
   {
     printf("Joining thread #%d\n", t);
