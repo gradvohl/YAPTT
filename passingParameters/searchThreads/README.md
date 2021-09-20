@@ -20,7 +20,7 @@ I divided the code into the following files:
 To solve the problem using multithreads, we will create threads that access their respective array partition. Besides, the threads shall receive the address of the array, two integers indicating the begin and the end of the partition, the element they will search for, and the address of a shared variable to tell when any thread finds the element.
 
 ### Structure to handle the thread input parameters
-We define the following structure to handle the parameters we will pass to the thread. The definition of this structure is in the ``searchThreads.h`` file (line 15).
+We define the following structure to handle the parameters we will pass to the thread. The definition of this structure is in the ``searchThreads.h`` file (line 19).
 ```c
 typedef struct
 {
@@ -35,7 +35,7 @@ typedef struct
 ### Allocate the structure to handle the parameters and instantiate each thread
 Now, let us turn our attention to the file ``main.c``, specifically to the function ``searchElement``, starting in line 26. After declaring the variables, we dynamically create an array of thread ids and enter in a loop to instantiate the threads.
 
-In each iteration of that loop, we define the values for each field of the structure that will handle the parameters; allocate that structure dynamically; and instantiate the thread. Following is the code that performs the steps mentioned before.
+In each iteration of that loop, we define the values for each field of the structure that will handle the parameters; allocate that structure dynamically; and instantiate a thread. Following is the code that performs the steps mentioned before.
 
 ```c
 parameters *p;
@@ -65,7 +65,7 @@ for (i = 0; i < nthreads; i++)
 The file ``funcs.c`` implements the ``parametersAllocation`` function, which dynamically allocates the structure to handle the parameters.
 
 ### Joining the threads
-After instantiating the threads, they run and produce results. Now, we need to block the main thread until the secondary threads finish. We call this "blocking until a thread finishes" as join.
+After instantiating the threads, they run and produce their results. Now, we need to block the main thread until the secondary threads finish. We call this "blocking until a thread finishes" as join.
 
 Notice that we need another loop to join the main thread to each secondary thread. The code is following.
 
@@ -89,9 +89,9 @@ for (i = 0; i < nthreads; i++)
 }
 ```
 
-In the previous code, we should highlight some details. Initially, let us observe the ``pthread_join`` function. The first parameter is the specific thread id that the main thread will join. Even if the threads finish in a different order than they were instantiated, there is no problem with other joins. But, it is the second parameter that worths mention.
+In the previous code, we should highlight some details. Initially, let us observe the ``pthread_join`` primitive. The first parameter is the specific thread id that the main thread will join. Even if the threads finish in a different order than they were instantiated, there is no problem with other joins. But, it is the second parameter that worths mention.
 
-The second parameter ``&threadResult`` is the address of a pointer, which will handle the address returned by the thread. If you look at line 34, you will see that I declared ``threadResult`` as ``void *``. Yet, I still passed the address of this variable to the ``pthread_join`` function. Giving the address of the variable is necessary because the ``pthread_join`` function will change the value handled by the ``threadResult`` variable.
+The second parameter ``&threadResult`` is the address of a pointer, which will handle the address returned by the thread. If you look at line 34, you will see that I declared ``threadResult`` as ``void *``. Yet, I still passed the address of this variable to the ``pthread_join`` function. Giving the address of the variable is necessary because the ``pthread_join`` primitive will change the value handled by the ``threadResult`` variable.
 
 It is worths watch how to check the value of the ``threadResult`` variable (in the if command in the previous code). Since ``threadResult`` is ``void *``, we need to cast the variable for ``(int *)`` first and, after that, check the address's content stored in ``threadResult`` variable. The following figure illustrates the procedure.
 
@@ -100,7 +100,7 @@ It is worths watch how to check the value of the ``threadResult`` variable (in t
 Finally, since we do not need the address's contents pointed by the ``threadResult`` variable anymore, we can free up the memory and let the next call of ``pthread_join`` allocates the new ``threadResult`` variable.
 
 ### The thread function
-Now, let us change our focus to the thread funcion in the ``searchThreads.c`` file. I want to highlight how can we copy the arguments we pass to the thread. The code for copy the arguments are as follows.
+Now, let us change our focus to the thread funcion in the ``searchThreads.c`` file. I want to highlight how can we copy the arguments we pass to the thread. The code for copy the arguments is the following.
 
 ```c
 begin = ((parameters *) args)->begin;
@@ -117,7 +117,7 @@ I usually declare local variables and copy the contents of structure fields into
 
 We must highlight one specific detail for this problem. Notice that the variable ``found`` is a pointer and stores an address. Intentionally, this address is the same for all threads because, once a thread changes this address's  contents, it will break the search loop in all other threads (as stated in the loop in line 62 in file ``searchThread.c``).
 
-#### Returning data from a thread
+### Returning data from a thread
 Remember that this thread should return the position of the found element or ``-1``. So, to return any data, we should allocate memory to handle the data, copy the data for the allocated memory and return the memory address. We performed these steps with the variable ``position`` within the ``searchThread`` function. Following are the commands we used.
 
 ```c
@@ -152,7 +152,7 @@ Remember that this thread should return the position of the found element or ``-
  return ((void *) position);
 }
 ```
-Notice that we must cast it to (void *) to avoid compiler warnings when returning the ``position`` variable.
+Notice that we must cast it to ``(void *)`` to avoid compiler warnings when returning the ``position`` variable.
 
 # Compiling and running
 To compile this code, you can use the following command line:
