@@ -1,5 +1,5 @@
 # Barrier example
-This section shows how to use barriers to provide synchronization in PThreads. In the synchronization context, the barrier is a point in the code of each of the threads such that all threads arriving at that point must be blocked until everyone arrives. After all threads arrive, they are all unblocked and can continue their execution after that point in their code. The following figure illustrates the synchronization with barriers 
+This section shows how to use barriers to provide synchronization in PThreads. In the synchronization context, the barrier is a point in the code of each of the threads such that all threads arriving at that point must be blocked until everyone arrives. After all threads arrive, they are all unblocked and can continue their execution after that point in their code. The following figure illustrates the synchronization with barriers. 
 
 <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadBarriers.png?raw=true" class="center" width=327 />
 
@@ -30,9 +30,9 @@ pthread_barrier_destroy(&barrier);
 ```
 
 ### Setting the barrier within the thread code
-Let us take a look in the thread code in file ``generateAndCheck.c``. In line 47, we call the ``pthread_barrier_wait(barrier);`` function. In that point in code, a thread will stop and wait until all the threads that share the ``barrier`` variable call the ``pthread_barrier_wait`` function.
+Let us take a look in the thread code in file ``generateAndCheck.c``. In line 47, we call the ``pthread_barrier_wait(barrier);`` function. In that point in code, a thread will stop and wait until all the threads that share the ``barrier`` variable call the ``pthread_barrier_wait`` primitive.
 
-The ``pthread_barrier_wait`` function may return zero or ``PTHREAD_BARRIER_SERIAL_THREAD``. According to the manual, the constant ``PTHREAD_BARRIER_SERIAL_THREAD`` shall be returned to one unspecified thread and zero shall be returned to each of the remaining threads.
+The ``pthread_barrier_wait`` primitive may return zero or ``PTHREAD_BARRIER_SERIAL_THREAD``. According to the manual, the constant ``PTHREAD_BARRIER_SERIAL_THREAD`` shall be returned to one unspecified thread and zero shall be returned to each of the remaining threads.
 
 ### Compiling and running the mutex code
 
@@ -42,3 +42,8 @@ make
 ```
 
 To run the program, you can issue the command ``./createAndCheck``.
+
+# What's next?
+We reached the end of the YAPTT tutorial. I hope you have learned a lot and that your knowledge will help develop better-performing programs.
+
+If you want, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
