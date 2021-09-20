@@ -34,7 +34,7 @@ The reader can observe that the methods follow a life cycle: initialize the vari
 ## Semaphores and Mutexes
 Semaphores and Mutexes are very alike. The main difference is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will block the thread.
 
-Directory [mutexAndSemaphorExamples](mutexAndSemaphorExamples) will present examples for using Semaphores and Mutexes.
+Directory [mutexAndSemaphorExamples](mutexAndSemaphorExamples) will present two distinct examples, one using Semaphore and other using Mutex.
 
 ## Condition variables
 As the name suggests, condition variables block a thread until a particular condition becomes true. Therefore, we use
@@ -48,3 +48,6 @@ Directory [conditionVariableExample](conditionVariableExample) brings an example
 Barriers are a method to synchronize a group of threads at some point in each thread code. When all the threads reach a barrier, it will release them.
 
 Directory [barrierExample](barrierExample) brings an example for barriers.
+
+# What's next?
+Now, you can see examples of synchronization using [Semaphores and Mutexes](mutexAndSemaphorExamples), [Condition variables](conditionVariableExample) or [Barriers](barrierExample). Or, if you prefer, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
