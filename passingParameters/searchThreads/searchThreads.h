@@ -12,6 +12,10 @@
 #  define FALSE 0
 #  define TRUE 1
 
+/**
+ * Definition of a structure to hold the parameters 
+ * for a thread.
+ */ 
 typedef struct
 {
   int *array;
