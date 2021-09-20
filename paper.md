@@ -5,7 +5,7 @@ tags:
 - Concurrent programming
 - Synchronization
 authors:
-- name: Andre Leon S. GRadvohl
+- name: Andre Leon S. Gradvohl
   orcid: 0000-0002-6520-9740
   affiliation: 1
 affiliations:
@@ -32,15 +32,23 @@ Another issue worth mentioning is the fact that YAPTT uses the pure C programmin
 
 # Learning Objectives and Content
 The learning objectives are as follows:
+
 - Understand what threads are, what advantages and disadvantages a code with multiple threads might bring to the performance of a program.
+
 - Learn how to instantiate multiple threads in a program that uses the PThreads API.
+
 - Understand how to send arguments to a function that encapsulates a thread using the PThreads API.
+
 - Understand how to receive values produced by a thread using the PThreads API.
+
 - Master the four main thread synchronization mechanisms (semaphores, mutexes, condition variables, and barriers) using the PThreads API.
 
 To achieve the learning objectives, I structured the content in the three sections described next.
-1. introduction: covering the main concepts behind the PThreads API.
+
+1. Introduction: covering the main concepts behind the PThreads API.
+
 2. Passing parameters to threads: explaining how to pass parameters to threads and get returns.
+
 3. Synchronizing threads: showing how to synchronize threads using the thread synchronization mechanisms (semaphores, mutexes, condition variables, and barriers).
 
 There are practical examples at the end of each section (or subsection), ready to compile and execute. I documented the source codes to facilitate understanding where the reader uses the PThreads API.
