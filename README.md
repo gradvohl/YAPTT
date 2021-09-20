@@ -19,7 +19,7 @@ Each section has a practical example to illustrate the approached concepts. All 
 There is a ``makefile`` with the instructions for compiling the source codes in the directories where the examples are. When the user issues the ``make`` command, it will interpret the compilation instructions in the ``makefile``, building the program. The output of the ``make`` command itself shows the compiler and the respective parameters used for compiling each source code and linking modules together.
 
 ## Licensing
-This work is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+This work is licensed under a [![Creative Commons Attribution 4.0 International License]][cc-by].
 
 [![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
 
