@@ -154,4 +154,4 @@ make -f makefileSemaphore
 To run the program, you can issue the command ``./searchThreadsSemaphore``.
 
 # What's next?
-Now, you can see examples of synchronization using [Condition variables](conditionVariableExample) or [Barriers](barrierExample). Or, if you prefer, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
+Now, you can see examples of synchronization using [Condition variables](../conditionVariableExample) or [Barriers](../barrierExample). Or, if you prefer, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
