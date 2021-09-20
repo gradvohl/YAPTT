@@ -5,8 +5,10 @@ By André Leon S. Gradvohl, Dr.
 [gradvohl@unicamp.br](mailto://gradvohl@unicamp.br)
 
 [![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) 
-![Gradvohl](https://img.shields.io/badge/maintainer-theMaintainer-blue)
+
+[cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
+[cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
+[cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 
 ## Overview
 This repository contains a new tutorial on the POSIX Threads (PThreads) application programming interface (API) using the C programming language. The PThreads API allows the programmer to create different streams of instructions (threads) that, if well-orchestrated, can get better performance from the processing cores in a processor.
