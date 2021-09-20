@@ -126,4 +126,4 @@ make
 To run the program, you can issue the command ``./rollDice``.
 
 # What's next?
-Now, you can see how to implement synchronization using [Barriers](barrierExample). Or, if you prefer, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
+Now, you can see how to implement synchronization using [Barriers](../barrierExample). Or, if you prefer, you can get back to the [main page](https://github.com/gradvohl/YAPTT).
