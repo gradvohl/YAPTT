@@ -21,7 +21,9 @@ void *printHello(void *args)
 }
 ```
 
-At the end of the thread, in line 21, notice that we call the ``pthread_exit(NULL);`` primitive. That primitive will tell the main function that the thread finished and returns no address (``NULL``). If a thread needs to return a value, the address of the variable that stores this value must be indicated in this primitive.
+At the end of the thread, in line 21, notice that we call the ``pthread_exit(NULL);`` primitive. That primitive will tell the main function that the thread finished and returns no address (``NULL``). 
+
+However, suppose a thread needs to return a value. In that case, the programmer must inform in this primitive the address of the variable that stores the value. We will talk about returning values in [another section](../../passingParameters).
 
 ## The thread creation in the main function
 As we stated before, each process has a main thread. Therefore, let us consider the main function. In line 26, we created an array with ``NUM_THREADS`` positions. That array will handle the threads' ids, which we will use to join the threads after their processing.
@@ -78,7 +80,7 @@ gcc -pthread firstExample.c -o ./firstExample
 ```
 In that command line, we have the following information:
 - ``gcc`` is the compiler.
-- ``-pthread`` indicates the use of the PThread library.
+- ``-pthread`` indicates the use of the PThread API.
 - ``firstExample.c`` is the source code.
 - ``-o firstExample`` informs that the compiler should generate a program named ``firstExample``.
 
