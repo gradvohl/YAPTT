@@ -28,7 +28,7 @@ However, suppose a thread needs to return a value. In that case, the programmer 
 ## The thread creation in the main function
 As we stated before, each process has a main thread. Therefore, let us consider the main function. In line 26, we created an array with ``NUM_THREADS`` positions. That array will handle the threads' ids, which we will use to join the threads after their processing.
 
-From line 30 to line 40 (depicted as follows), that loop will create five threads, one at each iteration. In line 33, we will use the function ``pthread_create`` to instantiate the threads. The function ``pthread_create`` receives four arguments:
+From line 33 to line 43 (depicted as follows), that loop will create five threads, one at each iteration. In line 36, we will use the primitive ``pthread_create`` to instantiate the threads. The primitive ``pthread_create`` receives four arguments:
 - The address of a variable to handle the created thread id.
 - The address of a structure with attributes for thread creation (we will use ``NULL`` to use the default attributes).
 - The name of the function that embeds the thread.
@@ -48,12 +48,12 @@ for (t = 0; t < NUM_THREADS; t++)
 }
 ```
 
-On success, ``pthread_create`` returns 0 to the ``rc`` variable. Then, in line 35, we test if variable ``rc`` has a value different from zero. If that is the case, we print a message in standard error output and leave the program.
+On success, ``pthread_create`` returns 0 to the ``rc`` variable. Then, in line 38, we test if variable ``rc`` has a value different from zero. If that is the case, we print a message in standard error output and leave the program.
 
-If everything works well, after line 40, we will have six threads running in parallel. If the processor has six or more cores, it is possible that each core runs a different thread.
+If everything works well, after line 43, we will have six threads running in parallel. If the processor has six or more cores, it is possible that each core runs a different thread.
 
 ## The thread joining in the main function
-Starting in line 42 until line 52 (presented as follows), the main thread will wait for every other thread to join. Specifically in line 45, we used the function ``pthread_join`` to block the main thread until another specific thread finishes. The ``pthread_join`` receives two parameters:
+Starting in line 48 until line 58 (presented as follows), the main thread will wait for every other thread to join. Specifically in line 51, we used the primitive ``pthread_join`` to block the main thread until another specific thread finishes. The ``pthread_join`` primitive receives two parameters:
 - The id of the thread it will wait for.
 - The address of a pointe to variable that will handle the result (in this case, we will use ``NULL`` because we do not expect that the thread will return data).
 
@@ -71,7 +71,7 @@ for (t = 0; t < NUM_THREADS; t++)
 }
 ```
 
-On success, ``pthread_join`` returns 0 to the ``rc`` variable. Then, in line 47, we test if variable ``rc`` has a value different from zero. If that is the case, we print a message in standard error output and leave the program.
+On success, ``pthread_join`` returns 0 to the ``rc`` variable. Then, in line 53, we test if variable ``rc`` has a value different from zero. If that is the case, we print a message in standard error output and leave the program.
 
 # Compiling and running
 To compile this code, you can use the following command line:
