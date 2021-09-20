@@ -93,7 +93,7 @@ In the previous code, we should highlight some details. Initially, let us observ
 
 The second parameter ``&threadResult`` is the address of a pointer, which will handle the address returned by the thread. If you look at line 34, you will see that I declared ``threadResult`` as ``void *``. Yet, I still passed the address of this variable to the ``pthread_join`` function. Giving the address of the variable is necessary because the ``pthread_join`` primitive will change the value handled by the ``threadResult`` variable.
 
-It is worths watch how to check the value of the ``threadResult`` variable (in the if command in the previous code). Since ``threadResult`` is ``void *``, we need to cast the variable for ``(int *)`` first and, after that, check the address's content stored in ``threadResult`` variable. The following figure illustrates the procedure.
+It is worth watching how to check the value of the ``threadResult`` variable (in the if command in the previous code). Since ``threadResult`` is ``void *``, we need to cast the variable for ``(int *)`` first and, after that, check the address's content stored in ``threadResult`` variable. The following figure illustrates the procedure.
 
 <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/ThreadCastingPointer.png?raw=true" align="center" width=376 />
 
@@ -113,9 +113,9 @@ Notice that, as stated [before](#Structure-to-handle-the-thread-input-parameters
 
 Therefore, to extract the parameters, we should first cast the ``args`` variable as type ``(parameters *)`` and then access the specific field of the structure with the operator ``->``. 
 
-I usually declare local variables and copy the contents of structure fields into the variables. But, if you feel comfortable, you can use the structure fields directlly.
+I usually declare local variables and copy the contents of structure fields into the variables. But, if you feel comfortable, you can use the structure fields directly.
 
-We must highlight one specific detail for this problem. Notice that the variable ``found`` is a pointer and stores an address. Intentionally, this address is the same for all threads because, once a thread changes this address's  contents, it will break the search loop in all other threads (as stated in the loop in line 62 in file ``searchThread.c``).
+We must highlight one specific detail for this problem. First, notice that the variable ``found`` is a pointer and stores an address. Intentionally, this address is the same for all threads because, once a thread changes this address's  contents, it will break the search loop in all other threads (as stated in the loop in line 62 in file ``searchThread.c``).
 
 ### Returning data from a thread
 Remember that this thread should return the position of the found element or ``-1``. So, to return any data, we should allocate memory to handle the data, copy the data for the allocated memory and return the memory address. We performed these steps with the variable ``position`` within the ``searchThread`` function. Following are the commands we used.
@@ -160,7 +160,7 @@ To compile this code, you can use the following command line:
 make
 ```
 
-It will compile all the files separately. If everything is correct, it will build the program from the object files generated. The ``make`` command will show you the lines used in each step of the process.
+It will compile all the files separately. Then, if everything is correct, it will build the program from the object files generated. The ``make`` command will show you the lines used in each step of the process.
 
 To run the program, issue the following command. The program will present the array and ask you what element you want to search.
 ```bash
