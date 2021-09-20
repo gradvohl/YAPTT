@@ -2,7 +2,7 @@
  * Program to exemplify the use of mutex with PThread 
  * library.
  * The program uses multiple threads to search for the 
- * largest element in an array of unordered non-repeating 
+ * highest element in an array of unordered non-repeating 
  * integers.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
@@ -16,26 +16,26 @@
 #define NTHREADS 4
 
 /**
- * Procedure to get the largest element in an array. 
+ * Procedure to get the highest element in an array. 
  * The procedure will divide the array into threads and 
- * each thread will get the largest element in its partition.
- * After that this procedure will show the largest element
+ * each thread will get the highest element in its partition.
+ * After that this procedure will show the highest element
  * among the elements each thread returned.
  *
  * @param array Array where the procedure will search for the element.
  * @param size Array size
  * @param nthreads Number of threads to search for the element.
  *
- * @return An address of the structure with the largest element and
+ * @return An address of the structure with the highest element and
  *         its position in the array.
  */
-void largestElement(int *array, unsigned int size, unsigned int nthreads)
+void highestElement(int *array, unsigned int size, unsigned int nthreads)
 {
   unsigned int i;
   parameters *p;
   register unsigned int begin, end;
   pthread_mutex_t mutex;
-  largestElementStrucuture largestElementField;
+  highestElementStrucuture highestElementField;
   pthread_t *threadIDs;
 
   /**
@@ -49,10 +49,10 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
   pthread_mutex_init(&mutex, NULL);
 
   /**
-   * Initialize the largestElementStrucuture.
+   * Initialize the highestElementStrucuture.
    */
-  largestElementField.element = INT_MIN;
-  largestElementField.position = 0;
+  highestElementField.element = INT_MIN;
+  highestElementField.position = 0;
   /**
    * Create the numner of threads specified in 
    * the variable 'nthreads'.
@@ -67,10 +67,10 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
 
     /* Allocate the parameters for this specific thread. */
     p = parametersAllocation(begin, end, array,
-                             &mutex, &largestElementField);
+                             &mutex, &highestElementField);
 
     /* Create the specific thread. */
-    if (pthread_create(&threadIDs[i], NULL, searchLargestElementThread, p))
+    if (pthread_create(&threadIDs[i], NULL, searchhighestElementThread, p))
     {
       fprintf(stderr, "Problems in thread %d creation\n", i);
       exit(EXIT_FAILURE);
@@ -93,10 +93,10 @@ void largestElement(int *array, unsigned int size, unsigned int nthreads)
   pthread_mutex_destroy(&mutex);
 
   /**
-   * Print the largest element.
+   * Print the highest element.
    */ 
-  fprintf(stdout, "The largest element (%d) is in position %d\n",
-          largestElementField.element, largestElementField.position);
+  fprintf(stdout, "The highest element (%d) is in position %d\n",
+          highestElementField.element, highestElementField.position);
 }
 
 int main(int argc, char *argv[])
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 
   printArray(array, SIZE);
 
-  largestElement(array, SIZE, NTHREADS);
+  highestElement(array, SIZE, NTHREADS);
 
   free(array);
 

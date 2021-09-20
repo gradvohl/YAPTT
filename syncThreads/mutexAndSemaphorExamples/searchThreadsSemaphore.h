@@ -2,7 +2,7 @@
  * Program to exemplify the use of semaphores with PThread
  * library.
  * The program uses multiple threads to search for the
- * largest element in an array of unordered non-repeating
+ * highest element in an array of unordered non-repeating
  * integers.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
@@ -18,7 +18,7 @@ typedef struct
 {
   unsigned int position;
   int element;
-} largestElementStrucuture;
+} highestElementStrucuture;
 
 typedef struct
 {
@@ -26,17 +26,17 @@ typedef struct
   unsigned int begin;
   unsigned int end;
   sem_t *semaphore;
-  largestElementStrucuture *largestElementField;
+  highestElementStrucuture *highestElementField;
 } parameters;
 
 short exists(int elemento, int *vetor, int tamanho);
-void *searchLargestElementThread(void *args);
+void *searchhighestElementThread(void *args);
 parameters *parametersAllocation(unsigned int begin, unsigned int end,
                                  int *array, sem_t * semaphore,
-                                 largestElementStrucuture *
-                                 largestElementField);
+                                 highestElementStrucuture *
+                                 highestElementField);
 
-largestElementStrucuture *largestElementStrucutureAllocation(unsigned int
+highestElementStrucuture *highestElementStrucutureAllocation(unsigned int
                                                              position,
                                                              int element);
 #endif

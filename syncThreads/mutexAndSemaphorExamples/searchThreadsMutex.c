@@ -2,7 +2,7 @@
  * Program to exemplify the use of semaphores with PThread
  * library.
  * The program uses multiple threads to search for the
- * largest element in an array of unordered non-repeating
+ * highest element in an array of unordered non-repeating
  * integers.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
@@ -21,14 +21,14 @@
  *         position of the element in the array or -1 if it
  *         was not found.
  */
-void *searchLargestElementThread(void *args)
+void *searchhighestElementThread(void *args)
 {
   register unsigned int begin, end, i;
   unsigned int position;
   int element = INT_MIN;
   int *array;
   pthread_mutex_t *mutex;
-  largestElementStrucuture *largestElementField;
+  highestElementStrucuture *highestElementField;
 
   /**
    * Copy the parameters in 'args' for local variables.
@@ -37,7 +37,7 @@ void *searchLargestElementThread(void *args)
   end = ((parameters *) args)->end;
   array = ((parameters *) args)->array;
   mutex = ((parameters *) args)->mutex;
-  largestElementField = ((parameters *) args)->largestElementField;
+  highestElementField = ((parameters *) args)->highestElementField;
 
 
   /**
@@ -62,10 +62,10 @@ void *searchLargestElementThread(void *args)
    * update it if necessary. 
    */
   pthread_mutex_lock(mutex);
-  if (element > largestElementField->element)
+  if (element > highestElementField->element)
   {
-    largestElementField->element = element;
-    largestElementField->position = position;
+    highestElementField->element = element;
+    highestElementField->position = position;
   }
   pthread_mutex_unlock(mutex);
 
@@ -85,8 +85,8 @@ void *searchLargestElementThread(void *args)
  */
 parameters *parametersAllocation(unsigned int begin, unsigned int end,
                                  int *array, pthread_mutex_t* mutex,
-                                 largestElementStrucuture *
-                                 largestElementField)
+                                 highestElementStrucuture *
+                                 highestElementField)
 {
   parameters *p;
 
@@ -100,7 +100,7 @@ parameters *parametersAllocation(unsigned int begin, unsigned int end,
   p->end = end;
   p->array = array;
   p->mutex = mutex;
-  p->largestElementField = largestElementField;
+  p->highestElementField = highestElementField;
 
   return p;
 }
