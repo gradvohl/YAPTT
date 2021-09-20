@@ -1,12 +1,11 @@
 # Introduction
-In this section, we will give some basic information about how threads work using PThreads. Also, we will present the first examples, which explain the fundamental structures for writing codes for threads in PThreads.
+In this section, I will give some basic information about how threads work using the PThreads API. Also, I will present a first example, which explains the fundamental structures for writing codes for threads using PThreads.
 
 I divided this section is the following topics:
 - [Brief Overview of Threads](#Brief-Overview-of-Threads)
 - [Schematic of Multithread Processing using PThreads](#Schematic-of-Multithread-Processing-using-PThreads)
 - [Thread Signature](#Thread-Signature)
 - [Time to Code](#Time-to-Code)
-
 
 
 ## Brief Overview of Threads
