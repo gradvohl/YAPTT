@@ -1,13 +1,13 @@
 # Synchronizing threads
 Most of the time, when we write multithread programs, we want to create a pool of threads to cooperate for solving a problem. However, for cooperation to occur, the threads must exchange information (communicate) with each other. 
 
-The communication among threads occurs using shared variables. Since a process can handle multiple threads, using a global scope variable is an practical way to share a variable among threads. However, I am not particularly eager to use global variables for several reasons (namespace pollution, possible alteration in other parts of the code etc). Therefore, the alternative is to dynamically allocate a memory location and share the address of that memory location among the threads.
+The communication among threads occurs using shared variables. Since a process can handle multiple threads, using a global scope variable is practical to share a variable among threads. However, I am not particularly eager to use global variables for several reasons (namespace pollution, possible alteration in other parts of the code etc). Therefore, the alternative is to dynamically allocate a memory location and share the address of that memory location among the threads.
 
 Either way, every time threads share an object (variables, memory locations, open files etc), that object is in the core of the code's **critical region**. As the name suggests, a critical region should have exceptional attention by the programmer, especially when an operation (or a set of operations) can change the contents of a shared object in a critical region. Therefore, the programmer should create a **mutual exclusion zone** to ensure that only one thread at a time performs its operations at shared objects inside that critical region. The procedure in which a thread signals that other threads should wait for an operation to complete before continuing is synchronization.
 
 In few words, creating a mutual exclusion zone in a code involves using commands to block a thread just before the zone and unblock the other threads after the zone. Blocking and unblocking operations require a shared variable (or memory location) among threads.
 
-The programmers must be careful about the mutual exclusion zones they define. Mutual exclusion zones can degrade program's performance since threads must wait before accessing the zone. On the other hand, creating fewer mutual exclusion zones than necessary can lead to inconsistencies in shared objects.
+The programmers must be careful about the mutual exclusion zones they define. Mutual exclusion zones can degrade the program's performance since threads must wait before accessing the zone. On the other hand, creating fewer mutual exclusion zones than necessary can lead to inconsistencies in shared objects.
 
 ## Strategies for threads synchronization
 In this section, we will talk about some strategies for synchronization among threads. In this tutorial, we will focus on the following methods:
@@ -27,8 +27,9 @@ The following table summarizes the methods we will approach, their utilization, 
 | **Unblocking** | ``sem_post`` | ``pthread_mutex_unlock`` | ``pthread_cond_signal`` | |
 | **Desalocation** | ``sem_destroy`` | ``pthread_mutex_destroy`` | ``pthread_cond_destroy`` | ``pthread_barrier_destroy`` |
 
+It is important to mention that, except for synchronization using semaphores, all the other methods are already part of the PThreads API.
 
-The reader can observe that the methods follow a life cycle: initialize the variables, block and unblock, deallocate the variables. Also, it is important to notice that the variables used in all those methods are operating system resources. Therefore, the programmer must allocate (initialize) them at the beginning of their use and deallocated them when no longer needed.
+The reader can observe that the methods follow a life cycle: initialize the variables, block before entering in the mutual exclusion zone and unblock after leaving the mutual exclusion zone, and deallocate the variables. Also, it is important to consider that the variables used in all those methods are operating system resources. Therefore, the programmer must allocate (initialize) them at the beginning of their use and deallocated them when no longer needed.
 
 ## Semaphores and Mutexes
 Semaphores and Mutexes are very alike. The main difference is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will block the thread.
