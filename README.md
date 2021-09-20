@@ -1,9 +1,12 @@
 # YAPTT -- Yet Another PThread Tutorial <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/YAPTT.png?raw=true" align="right" width=283 />
 
 By André Leon S. Gradvohl, Dr.
+
 [gradvohl@unicamp.br](mailto://gradvohl@unicamp.br)
 
-[![CC BY 4.0][cc-by-shield]][cc-by] ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![Gradvohl](https://img.shields.io/badge/maintainer-theMaintainer-blue)
+[![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) 
+![Gradvohl](https://img.shields.io/badge/maintainer-theMaintainer-blue)
 
 ## Overview
 This repository contains a new tutorial on the POSIX Threads (PThreads) application programming interface (API) using the C programming language. The PThreads API allows the programmer to create different streams of instructions (threads) that, if well-orchestrated, can get better performance from the processing cores in a processor.
