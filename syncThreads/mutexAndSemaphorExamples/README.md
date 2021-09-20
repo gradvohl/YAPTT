@@ -4,7 +4,7 @@ This section shows how to implement synchronization with two examples, one of th
 ## Problem description and the strategy to solve it
 The problem is to search for the maximum value in an array of 40 non-ordered random integers. Therefore, we will divide the array into four partitions and let each thread calculates the highest value in the partition assigned to it. 
 
-In the end, each thread compares its highest integer found with a shared variable (a structure) that handles the highest integer found so far and its position in the array. After all the threads finish, the main thread will print the highest integer and its position in the array.
+In the end, each thread compares its highest integer found with a shared variable (a structure) that handles the highest integer found so far and its position in the array. Finally, after all the threads finish, the main thread will print the highest integer and its position in the array.
 
 As the reader may suspect, that shared variable is a **critical region**. Therefore, we should create a **mutual exclusion zone** around this critical region to ensure that only one thread at a time will query and, if necessary, change the value of this variable.
 
@@ -23,7 +23,7 @@ After initializing the mutex, we can use it to block or unblock other threads, a
 
 ### Structure to handle the parameters
 
-For the thread to work, we will pass various parameters embedded in a structure defined in file ``searchThreadsMutex.h`` and replicated as follows.
+We will pass various parameters embedded in a structure defined in file ``searchThreadsMutex.h`` for the thread to work. I replicated the code as follows.
 
 ```c
 typedef struct
@@ -42,7 +42,7 @@ typedef struct
 } parameters;
 
 ```
-Notice that the parameters structure has the following fields:
+Notice that the structure to handle parameters has the following fields:
 - ``array`` to handle the address of the array with the integers.
 - ``begin`` and end with the first and last positions of the array (partition) the thread will work on.
 - ``mutex`` to store the address of the mutex shared between threads.
