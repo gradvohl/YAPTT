@@ -29,7 +29,7 @@ The following table summarizes the methods we will approach, their utilization, 
 
 It is important to mention that, except for synchronization using semaphores, all the other methods are already part of the PThreads API.
 
-The reader can observe that the methods follow a life cycle: initialize the variables, block before entering in the mutual exclusion zone and unblock after leaving the mutual exclusion zone, and deallocate the variables. Also, it is important to consider that the variables used in all those methods are operating system resources. Therefore, the programmer must allocate (initialize) them at the beginning of their use and deallocated them when no longer needed.
+The reader can observe that the methods follow a life cycle: initialize the variables, block before entering in the mutual exclusion zone and unblock after leaving the mutual exclusion zone, and deallocate the variables. Also, it is important to consider that the variables used in all those methods are operating system resources. Therefore, the programmer must allocate (initialize) them at the beginning of their use and deallocated them when no longer needed. 
 
 ## Semaphores and Mutexes
 Semaphores and Mutexes are very alike. The main difference is that mutexes are binary variables, assuming two states: locked or unlocked. In turn, semaphores can work with any non-negative value (i. e., values greater than or equal to zero). So, when a semaphore reaches zero, it will block the thread.
