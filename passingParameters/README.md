@@ -1,6 +1,6 @@
 # Passing parameters to threads
 
-Passing parameters to threads in PThreads API is tricky compared to passing parameters to regular functions. As the reader may be aware, functions receive parameters passed by value in the C programming language. However, the programmer can specify that a function receives an address (stored in a pointer) as argument to mimic passage by reference. 
+Passing parameters to threads in PThreads API is tricky compared to passing parameters to regular functions. As the reader may be aware, functions receive parameters passed by value in the C programming language. However, the programmer can specify that a function receives an address (stored in a pointer) as an argument to mimic passage by reference. 
 
 As mentioned in the section [Thread Signature](../introduction/README.md#Thread-Signature), a thread receives a single ``void *`` parameter and returns a ``void *`` type. Besides, it is important to remember that ``void *`` means a "pointer to anything". Therefore, we can encapsulate any data set into a structure and pass (or receive) the address of that structure to (or from) a thread.
 
