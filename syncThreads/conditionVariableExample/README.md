@@ -1,5 +1,5 @@
 # Condition variable example
-This section shows how to implement synchronization using a Condition Variable (CV). Unlike mutexe and semaphore, which synchronize thread access to data, a condition variable is a way to signal that a condition happened to other threads. Therefore, the thread that received that signal may unblock itself and perform other operations.
+This section shows how to implement synchronization using a Condition Variable (CV). Unlike mutex and semaphore, which synchronize thread access to data, a condition variable is a way to signal that a condition happened to other threads. Therefore, the thread that received that signal may unblock itself and perform other operations.
 
 In PThreads library, a CV always works together with a mutex. It works this way because when the CV receives a signal, it unlocks its associated mutex.
 
@@ -48,7 +48,7 @@ pthread_mutex_unlock(&lock)
 
 
 ## Problem description and the strategy to solve it
-In this problem, we will start two threads. The first will remain blocked until the second thread signalizes that it generates a specific number (7). The second thread will generate integers until it finds the number 7.
+In this problem, we will start two threads. The first will remain blocked until the second thread signalizes that it generates a specific number (7). Then, the second thread will generate integers until it finds the number 7.
 
 ### Condition variable declaration, initialization, and destroy
 As we mentioned before, it is necessary to declare a condition variable and a mutex. The second parameter is ``NULL`` because we will use the default attributes for the variables. Therefore, the commands are the following:
@@ -69,7 +69,7 @@ pthread_mutex_destroy(&lock);
 ```
 
 ### Defining the mutual exclusion zone within the thread code
-Let us take a look at the two threads, both in file ``rollDice.c``. The first thread (``void *blockedThread(void *args)``) will first acquire a lock to guarantee access to the mutual exclusion zone. After that, it calls the ``pthread_cond_wait(cond, lock)`` primitive, which will block that thread, waiting for a signal carried by the ``cond`` variable. 
+Let us take a look at the two threads, both in file ``rollDice.c``. The first thread (``void *blockedThread(void *args)``) will acquire a lock to guarantee access to the mutual exclusion zone. After that, it calls the ``pthread_cond_wait(cond, lock)`` primitive, which will block that thread, waiting for a signal carried by the ``cond`` variable. 
 
 The thread must have the mutex locked by the calling thread, or undefined behavior will happen. So, that is the reason for acquiring the lock before.
 
