@@ -13,7 +13,7 @@ I split this tutorial into sections stored in specific directories. Each section
 2. [Passing parameters to threads](passingParameters): How to pass parameters to threads and get returns from them.
 3. [Synchronizing threads](syncThreads): How to synchronize threads.
 
-## How to use the examples in YAPTT
+### How to use the examples in YAPTT
 Each section has a practical example to illustrate the approached concepts. All the examples in YAPTT are ready to be compiled and run after compilation in a **Linux** distribution. It is essential to have the [GNU Compiler Collection](http://gcc.gnu.org) installed in the reader's **Linux** operating system for compiling.
 
 There is a ``makefile`` with the instructions for compiling the source codes in the directories where the examples are. When the user issues the ``make`` command, it will interpret the compilation instructions in the ``makefile``, building the program. The output of the ``make`` command itself shows the compiler and the respective parameters used for compiling each source code and linking modules together.
