@@ -19,14 +19,14 @@ bibliography: paper.bib
 Concurrent programming is a topic that deserves more exploration in Computer Science undergraduate courses, especially in practical terms. Therefore, to contribute to teaching those practical aspects, this text presents the Yet Another PThreads Tutorial (YAPTT) for pure C programming language. We are aware that exists tutorials on the world wide web that help programmers use PThreads API. However, we noticed that some PThreads tutorials do not approach techniques in a conceptually correct way. Some materials on the web appeal to quick code snippets that work but distort a little from the original idea in the PThreads library. Others do not get to the point and let the user get bogged down in the details. The goal of YAPTT is to offer one more resource to help those interested in learning about programming using the PThreads library using the pure C programming language. The YAPTT is open source, has many examples, and can be adapted or supplemented by any programmer according to her/his needs.
 
 # Statement of Need
-The Yet Another PThread Tutorial (YAPTT) supports learning multithreaded programming using the POSIX Threads API (PThreads). The PThreads API belongs to a family of standards called the Portable Operating System Interface (POSIX), specified by the IEEE Computer Society to maintain compatibility between operating systems [@butenhof_programming_1997]. Besides, PThreads library comes with the GNU Compiler Collection, common in most Linux distributions. These features make it easy and justifiable to use YAPTT as supplementary material for Operating Systems or Concurrent Programming courses at the undergraduate level or an Advanced Linux Programming course [@mitchell_advanced_2001].
+The Yet Another PThread Tutorial (YAPTT) supports learning multithreaded programming using the POSIX Threads API (PThreads). The PThreads API belongs to a family of standards called the Portable Operating System Interface (POSIX), specified by the IEEE Computer Society to maintain compatibility between operating systems [@butenhof_programming_1997]. Besides, the PThreads library comes with the GNU Compiler Collection, common in most Linux distributions. These features make it easy and justifiable to use YAPTT as supplementary material for Operating Systems or Concurrent Programming courses at the undergraduate level or an Advanced Linux Programming course [@mitchell_advanced_2001].
 
 YAPTT is entirely open and available on the GitHub code hosting platform. As a result, readers (students or instructors) can learn from the content and source code, add new examples, and improve the explanation of concepts. In this way, they can adapt the content to their needs.
 
-The examples available in YAPTT are well documented and ready to be compiled and run. Besides, there was a concern to write correct code without appealing to code that works, but that somehow distorts the original idea of the PThreads API, as happens in other texts available on the web. Therefore, the strategies and code used in YAPTT can serve as a model for other more complex projects that use the PThreads API in C programming language.
+The examples available in YAPTT are well documented and ready to be compiled and run. Besides, there was a concern to write correct code without appealing to code that works, but that somehow distorts the original idea of the PThreads API, as happens in other texts available on the web. Therefore, the strategies and code used in YAPTT can serve as a model for other more complex projects that use the PThreads API in the C programming language.
 
 # Target audience
-I designed YAPTT for readers interested in writing code in the pure C programming language using the PThreads API. Therefore, YAPTT readers must be already familiar with using pointers and memory allocation in the C programming language.
+We designed YAPTT for readers interested in writing code in the pure C programming language using the PThreads API. Therefore, YAPTT readers must be already familiar with using pointers and memory allocation in the C programming language.
 
 Another issue worth mentioning is the fact that YAPTT uses the pure C programming language. It means that the YAPTT examples do not use code snippets compiled only with compilers for C++, for example. Instead, the reader can compile and generate the example codes using any C programming language compiler.
 
@@ -43,7 +43,7 @@ The learning objectives are as follows:
 
 - Master the four main thread synchronization mechanisms (semaphores, mutexes, condition variables, and barriers) using the PThreads API.
 
-To achieve the learning objectives, I structured the content in the three sections described next.
+To achieve the learning objectives, we structured the content in the three sections described next.
 
 1. Introduction: covering the main concepts behind the PThreads API.
 
@@ -51,11 +51,11 @@ To achieve the learning objectives, I structured the content in the three sectio
 
 3. Synchronizing threads: showing how to synchronize threads using the thread synchronization mechanisms (semaphores, mutexes, condition variables, and barriers).
 
-There are practical examples at the end of each section (or subsection), ready to compile and execute. I documented the source codes to facilitate understanding where the reader uses the PThreads API.
+There are practical examples at the end of each section (or subsection), ready to compile and execute. We documented the source codes to facilitate understanding where the reader uses the PThreads API.
 
 # Conclusion and Perspectives
-My goal in creating YAPTT was to make available to the community an objective, practical tutorial that could be used by anyone interested in learning a little about the PThreads API. Obviously, we know that there are other tutorials available on the web. Still, we believe that YAPTT is different by being more objective, without presenting "half-cooked" solutions, that is, codes that work but are not fully in line with the PThreads API idea.
+Our goal in creating YAPTT was to make available to the community an objective, practical tutorial that could be used by anyone interested in learning a little about the PThreads API. Obviously, we know that there are other tutorials available on the web. Still, we believe that YAPTT is different by being more objective, without presenting "half-cooked" solutions, that is, codes that work but are not fully in line with the PThreads API idea.
 
-I expect that readers will widely use this tutorial. But, at the same time, I hope the material can be complemented by other users, always to help the whole community.
+We expect that readers will widely use YAPTT. But, at the same time, we hope the material can be complemented by other users, always to help the whole community.
 
 # References
