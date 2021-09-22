@@ -1,3 +1,9 @@
+/**
+ * Auxiliary functions to support a program to exemplify 
+ * the use of the PThread library.
+ *
+ * Author: Andre Leon S. Gradvohl, Dr.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -52,9 +58,11 @@ int *createRandomArray(unsigned int size)
 
   for (i = 0; i < size; i++)
   {
-    do {
+    do
+    {
       element = rand() % (size + 1);
-    } while (exists(element, array, i));
+    }
+    while (exists(element, array, i));
 
     array[i] = element;
   }
@@ -86,15 +94,14 @@ void printArray(int *array, unsigned int size)
  * @param size Size of the array.
  *
  * @return Memory address of the array.
- */ 
+ */
 pthread_t *threadIDsAllocation(unsigned int size)
 {
   pthread_t *threadsIDs = NULL;
 
   if (size > 0)
   {
-    if ((threadsIDs =
-         (pthread_t *) malloc(sizeof(pthread_t) * size)) == NULL)
+    if ((threadsIDs = (pthread_t *) malloc(sizeof(pthread_t) * size)) == NULL)
     {
       fprintf(stderr, "Problems on allocating threads ids array in memory\n");
       exit(EXIT_FAILURE);
