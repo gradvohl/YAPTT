@@ -1,4 +1,4 @@
-# Makefile for the searchThreads program.
+# Makefile for the createAndCheck program.
 #
 # Author: Andre Leon S. Gradvohl, Dr.
 #
