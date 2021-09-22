@@ -1,3 +1,9 @@
+/**
+ * Header for auxiliary functions for programs to exemplify
+ * synchronization with semaphor and mutex.
+ *
+ * Author: Andre Leon S. Gradvohl, Dr.
+ */
 #ifndef _AUXFUNCS
 #  define _AUXFUNCS
 short exists(int element, int *array, int size);

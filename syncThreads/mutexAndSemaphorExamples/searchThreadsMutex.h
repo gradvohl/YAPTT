@@ -1,9 +1,7 @@
 /**
- * Program to exemplify the use of semaphores with PThread
- * library.
- * The program uses multiple threads to search for the
- * highest element in an array of unordered non-repeating
- * integers.
+ * Header for the program to exemplify the use of mutexes 
+ * with PThread library. It includes the definitions of the
+ * structures to handle the parameters.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
  */
@@ -32,7 +30,7 @@ typedef struct
 short exists(int elemento, int *vetor, int tamanho);
 void *searchhighestElementThread(void *args);
 parameters *parametersAllocation(unsigned int begin, unsigned int end,
-                                 int *array, pthread_mutex_t* mutex,
+                                 int *array, pthread_mutex_t * mutex,
                                  highestElementStrucuture *
                                  highestElementField);
 

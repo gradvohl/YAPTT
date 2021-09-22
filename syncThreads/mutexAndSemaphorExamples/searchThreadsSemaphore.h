@@ -1,10 +1,7 @@
 /**
- * Program to exemplify the use of semaphores with PThread
- * library.
- * The program uses multiple threads to search for the
- * highest element in an array of unordered non-repeating
- * integers.
- *
+ * Header for the program to exemplify the use of semaphores
+ * with PThread library. It includes the definitions of the
+ * structures to handle the parameters.
  * Author: Andre Leon S. Gradvohl, Dr.
  */
 #ifndef _SEARCHTHREADS

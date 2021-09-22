@@ -66,8 +66,7 @@ void highestElement(int *array, unsigned int size, unsigned int nthreads)
     end = (i + 1) * (size / nthreads);
 
     /* Allocate the parameters for this specific thread. */
-    p = parametersAllocation(begin, end, array,
-                             &mutex, &highestElementField);
+    p = parametersAllocation(begin, end, array, &mutex, &highestElementField);
 
     /* Create the specific thread. */
     if (pthread_create(&threadIDs[i], NULL, searchhighestElementThread, p))
@@ -89,12 +88,12 @@ void highestElement(int *array, unsigned int size, unsigned int nthreads)
   /**
    * We don't need the mutex anymore. 
    * So, we desallocate it.
-   */ 
+   */
   pthread_mutex_destroy(&mutex);
 
   /**
    * Print the highest element.
-   */ 
+   */
   fprintf(stdout, "The highest element (%d) is in position %d\n",
           highestElementField.element, highestElementField.position);
 }

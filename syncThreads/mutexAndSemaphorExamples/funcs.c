@@ -3,7 +3,7 @@
  * synchronization with semaphor and mutex.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
- */ 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

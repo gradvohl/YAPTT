@@ -1,5 +1,5 @@
 /**
- * Program to exemplify the use of semaphores with PThread
+ * Program to exemplify the use of mutexes with PThread
  * library.
  * The program uses multiple threads to search for the
  * highest element in an array of unordered non-repeating
@@ -84,7 +84,7 @@ void *searchhighestElementThread(void *args)
  * @return The address of the allocated structure.
  */
 parameters *parametersAllocation(unsigned int begin, unsigned int end,
-                                 int *array, pthread_mutex_t* mutex,
+                                 int *array, pthread_mutex_t * mutex,
                                  highestElementStrucuture *
                                  highestElementField)
 {

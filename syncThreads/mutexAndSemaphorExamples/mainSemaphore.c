@@ -90,12 +90,12 @@ void highestElement(int *array, unsigned int size, unsigned int nthreads)
   /**
    * We don't need the semaphore anymore. 
    * So, we desallocate it.
-   */ 
+   */
   sem_destroy(&semaphore);
 
   /**
    * Print the highest element.
-   */ 
+   */
   fprintf(stdout, "The highest element (%d) is in position %d\n",
           highestElementField.element, highestElementField.position);
 }
