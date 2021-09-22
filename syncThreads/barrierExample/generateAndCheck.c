@@ -1,6 +1,6 @@
 /**
- * The implementation of a thread function to generate
- * the integers, add them to a partition, and check if
+ * The implementation of a thread to generate the 
+ * integers, add them to a partition, and check if
  * there are duplicate numbers between partitions.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
@@ -34,9 +34,11 @@ void *generateAndCheck(void *args)
    */
   for (i = begin; i <= end; i++)
   {
-    do {
+    do
+    {
       number = rand() % (LASTARRAYPOSITION + 1);
-    } while (exists(number, array, begin, end));
+    }
+    while (exists(number, array, begin, end));
 
     array[i] = number;
   }

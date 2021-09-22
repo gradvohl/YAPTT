@@ -1,3 +1,9 @@
+/**
+ * A header for auxiliary functions for the program
+ * to exemplify the barrier synchronization method.
+ *
+ * Author: Andre Leon S. Gradvohl, Dr.
+ */
 #ifndef _AUXFUNCS
 #  define _AUXFUNCS
 #  define FALSE 0

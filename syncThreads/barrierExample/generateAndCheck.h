@@ -1,3 +1,9 @@
+/**
+ * A header with the definition of the structure
+ * to handle the parameters and the thread signature.
+ *
+ * Author: Andre Leon S. Gradvohl, Dr.
+ */
 #ifndef _GENERATEANDCHECK
 #  define _GENERATEANDCHECK
 #  include <pthread.h>

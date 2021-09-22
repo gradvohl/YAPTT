@@ -1,5 +1,6 @@
 /**
- * A collection of auxiliary functions.
+ * A collection of auxiliary functions for the program 
+ * to exemplify the barrier synchronization method.
  *
  * Author: Andre Leon S. Gradvohl, Dr.
  */

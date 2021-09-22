@@ -1,5 +1,5 @@
 /**
- * Program to exemplify the use of barrierd in the 
+ * Program to exemplify the use of barriers in the 
  * PThread library.
  * The program creates two threads to fill an array with
  * 100 integers. Each thread will fill its array partition
