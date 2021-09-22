@@ -54,7 +54,7 @@ To achieve the learning objectives, we structured the content in the three secti
 There are practical examples at the end of each section (or subsection), ready to compile and execute. In addition, we documented the source codes to facilitate understanding where the reader uses the PThreads API.
 
 # Conclusion and Perspectives
-Our goal in creating YAPTT was to make an objective, practical tutorial available to the community that anyone interested in learning a little about the PThreads API can use. Definitely, we know that many books, such as [@lewis_threads_1996,@butenhof_programming_1997,@mitchell_advanced_2001], that cover the subject with excelent quality and depth. Still, we believe that YAPTT is different from other tutorials on the web by being more objective without presenting "half-cooked" solutions, that is, codes that work but are not fully in line with the PThreads API idea.
+Our goal in creating YAPTT was to make an objective, practical tutorial available to the community that anyone interested in learning a little about the PThreads API can use. Definitely, we know that many books, such as [@lewis_threads_1996], [@butenhof_programming_1997] and [@mitchell_advanced_2001], that cover the subject with excelent quality and depth. Still, we believe that YAPTT is different from other tutorials on the web by being more objective without presenting "half-cooked" solutions, that is, codes that work but are not entirely in line with the PThreads API idea.
 
 We expect that readers will widely use YAPTT. Nevertheless, at the same time, we hope the material can be complemented by other users, always to help the whole community.
 
