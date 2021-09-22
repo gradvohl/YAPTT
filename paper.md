@@ -51,10 +51,10 @@ To achieve the learning objectives, we structured the content in the three secti
 
 3. Synchronizing threads: showing how to synchronize threads using the thread synchronization mechanisms (semaphores, mutexes, condition variables, and barriers).
 
-There are practical examples at the end of each section (or subsection), ready to compile and execute. We documented the source codes to facilitate understanding where the reader uses the PThreads API.
+There are practical examples at the end of each section (or subsection), ready to compile and execute. In addition, we documented the source codes to facilitate understanding where the reader uses the PThreads API.
 
 # Conclusion and Perspectives
-Our goal in creating YAPTT was to make available to the community an objective, practical tutorial that could be used by anyone interested in learning a little about the PThreads API. Obviously, we know that there are other tutorials available on the web. Still, we believe that YAPTT is different by being more objective, without presenting "half-cooked" solutions, that is, codes that work but are not fully in line with the PThreads API idea.
+Our goal in creating YAPTT was to make an objective, practical tutorial available to the community that anyone interested in learning a little about the PThreads API can use. We know that there are many books, such as [@lewis_threads_1996,@butenhof_programming_1997,@mitchell_advanced_2001], that cover the subject with great quality and depth. Still, we believe that YAPTT is different from other tutorials in the web by being more objective, without presenting "half-cooked" solutions, that is, codes that work but are not fully in line with the PThreads API idea.
 
 We expect that readers will widely use YAPTT. But, at the same time, we hope the material can be complemented by other users, always to help the whole community.
 
