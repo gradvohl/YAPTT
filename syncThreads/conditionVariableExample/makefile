@@ -1,4 +1,4 @@
-# Makefile for the searchThreads program.
+# Makefile for the rollDice program.
 #
 # Author: Andre Leon S. Gradvohl, Dr.
 #
