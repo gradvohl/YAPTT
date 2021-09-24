@@ -1,5 +1,7 @@
 # YAPTT -- Yet Another PThread Tutorial <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/YAPTT.png?raw=true" align="right" width=283 />
 
+[![status](https://jose.theoj.org/papers/af668ce0e394761068de6606ac15b5bf/status.svg)](https://jose.theoj.org/papers/af668ce0e394761068de6606ac15b5bf)
+
 By André Leon S. Gradvohl, Dr.
 
 [gradvohl@unicamp.br](mailto://gradvohl@unicamp.br)
