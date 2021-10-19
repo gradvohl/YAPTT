@@ -1,8 +1,6 @@
 # YAPTT -- Yet Another PThread Tutorial <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/YAPTT.png?raw=true" align="right" width=283 />
 
-![image](https://img.shields.io/badge/Programming-brightgreen?style=plastic&logo=c%2B%2B) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/gradvohl/yaptt?style=plastic) ![GitHub](https://img.shields.io/github/license/gradvohl/yaptt?style=plastic) 
-
-![image](https://img.shields.io/badge/Programming-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![image](https://img.shields.io/badge/GNU%20Bash-4EAA25?style=for-the-badge&logo=GNU%20Bash&logoColor=white) 
+![image](https://img.shields.io/badge/Programming-brightgreen?style=plastic&logo=c%2B%2B) ![image](https://img.shields.io/badge/GNU%20Bash-4EAA25?style=plastic&style=for-the-badge&logo=GNU%20Bash&logoColor=white) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/gradvohl/yaptt?style=plastic) ![GitHub](https://img.shields.io/github/license/gradvohl/yaptt?style=plastic) 
 
 By André Leon S. Gradvohl, Dr. ([gradvohl@unicamp.br](mailto://gradvohl@unicamp.br))
 
