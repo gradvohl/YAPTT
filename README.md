@@ -1,10 +1,8 @@
 # YAPTT -- Yet Another PThread Tutorial <img src="https://github.com/gradvohl/YAPTT/blob/main/figures/YAPTT.png?raw=true" align="right" width=283 />
 
-[![status](https://jose.theoj.org/papers/af668ce0e394761068de6606ac15b5bf/status.svg)](https://jose.theoj.org/papers/af668ce0e394761068de6606ac15b5bf)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/gradvohl/yaptt?style=plastic) ![GitHub](https://img.shields.io/github/license/gradvohl/yaptt?style=plastic) ![image](https://img.shields.io/badge/Programming-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![image](https://img.shields.io/badge/GNU%20Bash-4EAA25?style=for-the-badge&logo=GNU%20Bash&logoColor=white) 
 
-By André Leon S. Gradvohl, Dr.
-
-[gradvohl@unicamp.br](mailto://gradvohl@unicamp.br)
+By André Leon S. Gradvohl, Dr. ([gradvohl@unicamp.br](mailto://gradvohl@unicamp.br))
 
 ## Overview
 This repository contains a new tutorial on the POSIX Threads (PThreads) application programming interface (API) using the C programming language. The PThreads API allows the programmer to create different streams of instructions (threads) that, if well-orchestrated, can get better performance from the processing cores in a processor.
@@ -30,3 +28,5 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 
 The readers and instructors are free to share and adapt this material for their needs.
+
+![GitHub repo size](https://img.shields.io/github/repo-size/gradvohl/yaptt?style=plastic) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/gradvohl/yaptt/latest?style=plastic) ![GitHub Release Date](https://img.shields.io/github/release-date/gradvohl/yaptt)
